@@ -1,10 +1,10 @@
-# miniRT - Our First Ray Tracer
+# 🔮 miniRT - Our First Ray Tracer 🔮
 
 ## Introduction
 
 We’re two passionate coders with a shared curiosity about how 3D graphics and visual effects work. Having explored various programming challenges, we wanted to tackle something truly ambitious – something that bridges our love for mathematics, problem-solving, and visual creativity. Enter miniRT.
 
-### Why miniRT?
+### Why miniRT? 
 
 - **Hands-on Learning**: It allows us to dive into 3D rendering basics.
 - **Applying Math in Code**: See complex formulas in action.
