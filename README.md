@@ -20,7 +20,7 @@ We’re two passionate coders with a shared curiosity about how 3D graphics and 
 
 - **Hands-on Learning**: It allows us to dive into 3D rendering basics.
 - **Applying Math in Code**: See complex formulas in action.
-- **C Programming**: An exciting challenge using our favorite language.
+- **C Programming**: An exciting challenge using our favorite language. 🙂🙂🙂
 
 ## Instructions for branching
 
