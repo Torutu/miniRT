@@ -4,13 +4,25 @@
 
 We’re two passionate coders with a shared curiosity about how 3D graphics and visual effects work. Having explored various programming challenges, we wanted to tackle something truly ambitious – something that bridges our love for mathematics, problem-solving, and visual creativity. Enter miniRT.
 
-### Why miniRT? 
+## Contacts
+### Waleed
+
++ 42-email: walnaimi@student.hive.fi
++ 42-profile: https://profile.intra.42.fr/users/walnaimi
++ discord: torutu.
+
+### Sahra
+
++ 42-email: sataskin@student.hive.fi
++ 42-profile: https://profile.intra.42.fr/users/sataskin
+
+## Why miniRT? 
 
 - **Hands-on Learning**: It allows us to dive into 3D rendering basics.
 - **Applying Math in Code**: See complex formulas in action.
 - **C Programming**: An exciting challenge using our favorite language.
 
-### Instructions for branching
+## Instructions for branching
 
 Always pull from main before continuing your work
 ```
