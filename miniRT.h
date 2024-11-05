@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:40:12 by sataskin          #+#    #+#             */
-/*   Updated: 2024/10/16 12:28:47 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:11:52 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <stdio.h>
+# include <stdbool.h>
 # include "libft/libft.h"
+# include "MLX42/include/MLX42/MLX42.h"
 
 /*
 	What each argument in the struct is:
@@ -75,10 +78,19 @@ typedef struct s_arg
 typedef struct s_minirt
 {
 	t_arg *l_list;
+	mlx_t	*mlx;
 	
 } t_minirt;
 
 void	check_content(char *file, t_minirt *rt);
 void	check_valid(char *file);
+
+//STUDIO
+void add_ambient(char **values, t_minirt *rt);
+void add_camera(char **values, t_minirt *rt);
+void add_light(char **values, t_minirt *rt);
+void add_sphere(char **values, t_minirt *rt);
+void add_plane(char **values, t_minirt *rt);
+void add_cylinder(char **values, t_minirt *rt);
 
 #endif

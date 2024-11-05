@@ -3,58 +3,72 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+         #
+#    By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 17:03:00 by sataskin          #+#    #+#              #
-#    Updated: 2024/10/16 11:19:32 by sataskin         ###   ########.fr        #
+#    Updated: 2024/11/05 15:12:46 by walnaimi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
+LIBMLX := ./MLX42
+HEADERS := -I $(LIBMLX)/include
 
-LIBFTPATH = ./libft
+LIBFT = ./libft/libft.a
 
-LIBFT = $(LIBFTPATH)/libft.a
+SRCS = main.c \
+	   content_val.c \
+	   file_val.c \
+	   studio.c
 
-# LIBMLX    := ./MLX42
+OBJS = $(SRCS:.c=.o)
 
-#HEADERS    := -I $(LIBMLX)/include
+LIBS := $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -L "/Users/$(USER)/.brew/opt/glfw/lib/"
 
-SRCS = content_val.c \
-		file_val.c \
-		main.c
+# ANSI color codes
+COLOR_GREEN := \033[0;32m
+COLOR_RESET := \033[0m
 
-OBJS= $(SRCS:.c=.o)
+# Default target
+all: libmlx $(LIBFT) $(NAME)
 
-# LIBS := $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -L "/Users/$(USER)/.brew/opt/glfw/lib/"
-
-#all: libmlx $(NAME)
-all: $(NAME)
-
-#libmlx:
-#	@if [ ! -d $(LIBMLX)/build ]; then\
-		cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4;\
+# Download MLX42 if not already present
+$(LIBMLX):
+	@if [ ! -d "$(LIBMLX)" ]; then \
+		echo "$(COLOR_GREEN)Cloning MLX42 repository...$(COLOR_RESET)"; \
+		git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX); \
 	fi
 
-$(OBJS): $(SRCS)
-	cc -Wall -Wextra -Werror -c -g $(@:.o=.c) -o $@
-
+# Build libft
 $(LIBFT):
-	make -C $(LIBFTPATH)
+	@make -C ./libft
 
-$(NAME): $(LIBFT) $(OBJS)
-	cc -Wall -Wextra -Werror $(SRCS) $(LIBFT) -o $@
-# cc -Wall -Wextra -Werror $(SRCS) $(LIBS) $(HEADERS) $(LIBFT) -o $@
+# Build libmlx
+libmlx: $(LIBMLX)
+	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
+# Compile object files
+%.o: %.c
+	@cc -Wall -Wextra -Werror -c -g $< -o $@
+
+# Link the final executable
+$(NAME): $(OBJS) $(LIBFT)
+	@cc -Wall -Wextra -Werror -g $(OBJS) $(LIBS) $(LIBFT) $(HEADERS) -o $@
+	@echo "$(COLOR_GREEN)miniRT is compiled$(COLOR_RESET)"
+
+# Clean up object files and libmlx build directory
 clean:
-	rm -f $(OBJS)
-	make clean -C $(LIBFTPATH)
-# @rm -rf $(LIBMLX)/build
+	@rm -f $(OBJS)
+	@rm -rf $(LIBMLX)/build
+	@make clean -C ./libft
 
+# Full clean including the executable
 fclean: clean
-	rm -f $(NAME)
-	make fclean -C $(LIBFTPATH)
+	@rm -f $(NAME)
+	@rm -rdf $(LIBMLX)
+	@make fclean -C ./libft
 
-re: fclean $(NAME)
+# Rebuild everything
+re: fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all clean fclean re libmlx

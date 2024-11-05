@@ -3,42 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   content_val.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:42:29 by sataskin          #+#    #+#             */
-/*   Updated: 2024/10/16 12:32:55 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:27:13 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static int	get_values(char line, t_minirt *rt)
+static int get_values(char *line, t_minirt *rt)
 {
-	char	**values;
+    char	**values;
+
 	values = ft_split(line, '\n');
-	if (!values)
-	{
-		write(2, "Error\nFT_SPLIT FAILED", 22);  //add malloc check handling here	
-	}
-	if (ft_strcmp(values[0], "A") == 0)
-		add_ambient(values, rt);
-	else if (ft_strcmp(values[0], "C") == 0)
-		add_camera(values, rt);
-	else if (ft_strcmp(values[0], "L") == 0)
-		add_light(values, rt);
-	else if (ft_strcmp(values[0], "sp") == 0)
-		add_sphere(values, rt);
-	else if (ft_strcmp(values[0], "pl") == 0)
-		add_plane(values, rt);
-	else if (ft_strcmp(values[0], "cy") == 0)
-		add_cylinder(values, rt);
-	else
-	{
-		write(2, "Error\nInvalid input in file", 28);
-		return (1);
-	}
-	return (0);
+    if (!values)
+    {
+        write(2, "Error\nFT_SPLIT FAILED", 22);
+        return (1);  // Return error to handle failed malloc.
+    }
+    if (ft_strcmp(values[0], "A") == 0)
+        add_ambient(values, rt);
+    else if (ft_strcmp(values[0], "C") == 0)
+        add_camera(values, rt);
+    else if (ft_strcmp(values[0], "L") == 0)
+        add_light(values, rt);
+    else if (ft_strcmp(values[0], "sp") == 0)
+        add_sphere(values, rt);
+    else if (ft_strcmp(values[0], "pl") == 0)
+        add_plane(values, rt);
+    else if (ft_strcmp(values[0], "cy") == 0)
+        add_cylinder(values, rt);
+    else
+    {
+        write(2, "Error\nInvalid input in file", 28);
+        return (1);
+    }
+    return (0);
 }
+
 
 void check_content(char *file, t_minirt *rt)
 {
