@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:40:12 by sataskin          #+#    #+#             */
-/*   Updated: 2024/11/05 15:11:52 by walnaimi         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:23:21 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 
 typedef struct s_arg
 {
-	int A; 
+	int A;
 	int l_rat;
 	int R;
 	int G;
