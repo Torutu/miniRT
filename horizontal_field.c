@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   horizontal_field.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 15:30:07 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/12 14:05:30 by sataskin         ###   ########.fr       */
+/*   Created: 2024/12/10 12:37:02 by sataskin          #+#    #+#             */
+/*   Updated: 2024/12/10 12:50:38 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "miniRT.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
+/* int FOV = 0 - 180 */
 
-# define BUFFER_SIZE 1
+int	add_horizontal(char *values, t_arg *new)
+{
+	int	i;
 
-# define FD_SIZE 4096
-
-char	*get_next_line(int fd);
-char	*ft_ret_strdel(char **string);
-
-#endif
+	i = 0;
+	while (values[i] != '\0')
+	{
+		if (ft_isdigit(values[i]) != 1)
+			return (1);
+		i++;
+	}
+	new->FOV = ft_atoi(values);
+	if (new->FOV > 180 || new->FOV < 0)
+		return (1);
+	return (0);
+}

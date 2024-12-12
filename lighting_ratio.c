@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   lighting_ratio.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 15:30:07 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/12 14:05:30 by sataskin         ###   ########.fr       */
+/*   Created: 2024/11/21 10:47:43 by sataskin          #+#    #+#             */
+/*   Updated: 2024/12/10 15:42:44 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "miniRT.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
+/* FORMAT 
+		 ambient lighting ratio in range [0.0,1.0]: 0.2
+*/
 
-# define BUFFER_SIZE 1
-
-# define FD_SIZE 4096
-
-char	*get_next_line(int fd);
-char	*ft_ret_strdel(char **string);
-
-#endif
+int	add_lighting_ratio(char *str, t_arg *new)
+{
+	if (ft_strlen(str) > 3)
+		return (1);
+	new->l_rat = ft_atof(str);
+	if (new->l_rat > 1.0 || new->l_rat < 0)
+		return (1);
+	return (0);
+}

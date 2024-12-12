@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   diameter.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 15:30:07 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/12 14:05:30 by sataskin         ###   ########.fr       */
+/*   Created: 2024/12/10 16:26:02 by sataskin          #+#    #+#             */
+/*   Updated: 2024/12/12 13:43:33 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "miniRT.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
+int	add_diameter(char *str, t_arg *new)
+{
+	int	i;
 
-# define BUFFER_SIZE 1
-
-# define FD_SIZE 4096
-
-char	*get_next_line(int fd);
-char	*ft_ret_strdel(char **string);
-
-#endif
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_isdigit(str[i]) == 0 && str[i] != '.')
+			return (1);
+		i++;
+	}
+	if (ft_strlen(str) > 4)
+		return (1);
+	new->diameter = ft_atoi(str);
+	return (0);
+}
