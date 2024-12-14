@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:40:12 by sataskin          #+#    #+#             */
-/*   Updated: 2024/11/05 16:23:21 by walnaimi         ###   ########.fr       */
+/*   Updated: 2024/12/14 15:20:54 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <stdbool.h>
 # include "libft/libft.h"
-# include "MLX42/include/MLX42/MLX42.h"
+# include <stdio.h> // delete me please
 
 /*
 	What each argument in the struct is:
@@ -50,47 +48,76 @@
 	int height = height;
 */
 
+typedef struct	s_vec
+{
+	float	x;
+	float	y;
+	float	z;
+}	t_vec;
+
+typedef	struct s_color
+{
+	int R;
+	int B;
+	int G;
+} t_color;
+
 typedef struct s_arg
 {
-	int A;
-	int l_rat;
-	int R;
-	int G;
-	int B;
+	int A; 
+	float l_rat;
+	t_color color;
 	int C;
-	int x;
-	int y;
-	int z;
-	int Xnv;
-	int Ynv;
-	int Znv;
+	t_vec	coor;
+	t_vec	coor3d;
 	int FOV;
 	int L;
-	int bright;
+	float bright;
 	int sp;
 	int diameter;
 	int pl;
 	int cy;
-	int height;
-	struct t_arg *next;
+	float height;
+	struct s_arg *next;
 } t_arg;
 
 typedef struct s_minirt
 {
-	t_arg *l_list;
-	mlx_t	*mlx;
-	
+	t_arg	*l_list;
+	char	*line;
+	int		fd;
 } t_minirt;
 
 void	check_content(char *file, t_minirt *rt);
 void	check_valid(char *file);
 
-//STUDIO
-void add_ambient(char **values, t_minirt *rt);
-void add_camera(char **values, t_minirt *rt);
-void add_light(char **values, t_minirt *rt);
-void add_sphere(char **values, t_minirt *rt);
-void add_plane(char **values, t_minirt *rt);
-void add_cylinder(char **values, t_minirt *rt);
+/*		ADDING VALUES			*/
+void	add_ambient(char **values, t_minirt *rt);
+void	add_camera(char **values, t_minirt *rt);
+void	add_light(char **values, t_minirt *rt);
+void	add_sphere(char **values, t_minirt *rt);
+void	add_plane(char **values, t_minirt *rt);
+void	add_cylinder(char **values, t_minirt *rt);
+
+/*		PARSING FUNCTIONS		*/
+int		argument_count(char **values, int amount);
+int		count_commas(char *line);
+int		no_extras(char **array);
+int		check_nodes(t_arg *nodes, char i);
+int		add_colors(char *values, t_arg *new);
+int		add_lighting_ratio(char *str, t_arg *new);
+int		add_coor(char *values, t_arg *new);
+int		add_threed(char *values, t_arg *new);
+int		add_horizontal(char *values, t_arg *new);
+int		add_diameter(char *str, t_arg *new);
+
+
+/*		MAKING LINKED lIST		*/
+
+void	ft_lstadd_back_rt(t_arg **lst, t_arg *new);
+
+/*		FOR FREEING				*/
+void	free_minirt(t_minirt *freeable, char *error);
+void	free_split(char **str);
 
 #endif

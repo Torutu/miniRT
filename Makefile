@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+         #
+#    By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 17:03:00 by sataskin          #+#    #+#              #
-#    Updated: 2024/11/05 15:12:46 by walnaimi         ###   ########.fr        #
+#    Updated: 2024/12/14 15:21:21 by sataskin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,23 @@ HEADERS := -I $(LIBMLX)/include
 
 LIBFT = ./libft/libft.a
 
-SRCS = main.c \
-	   content_val.c \
-	   file_val.c \
-	   studio.c
+SRCS = add_ambient.c \
+		add_camera.c \
+		add_light.c \
+		add_plane.c \
+		add_sphere.c \
+		add_cylinder.c \
+		colors.c \
+		content_val.c \
+		coordinates.c \
+		diameter.c \
+		file_val.c \
+		free_parser.c \
+		horizontal_field.c \
+		lighting_ratio.c \
+		make_list.c \
+		orientation_vector.c \
+		parsing_functions.c \
 
 OBJS = $(SRCS:.c=.o)
 
