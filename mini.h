@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "MLX42/include/MLX42/MLX42.h"
-#define WIDTH 800
-#define HEIGHT 600
+#define WIDTH 1080
+#define HEIGHT 720
 // Structures
 typedef struct s_vec3 {
     double x;

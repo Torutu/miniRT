@@ -31,7 +31,7 @@ void render_raytraced_image(mlx_image_t *img) {
                                    vec3(0, 0, focal_length));
 
     // Plane setup
-    t_plane plane = create_plane(vec3(1, 0, 0), vec3(-1, 0, 0), vec3(1.0, 0.0, 0.0)); // red plane
+    t_plane plane = create_plane(vec3(0, -1, 0), vec3(0, 1, 0), vec3(1.0, 0.0, 0.0)); // red plane
 
     for (int y = 0; y < image_height; y++) {
         for (int x = 0; x < image_width; x++) {

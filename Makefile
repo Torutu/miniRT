@@ -6,7 +6,7 @@
 #    By: walnaimi <walnaimi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 17:03:00 by sataskin          #+#    #+#              #
-#    Updated: 2024/12/18 19:03:22 by walnaimi         ###   ########.fr        #
+#    Updated: 2024/12/19 20:23:09 by walnaimi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ all: libmlx $(NAME)
 libmlx:
 	@if [ ! -d "$(LIBMLX)" ]; then \
 		echo "MLX42 not found, installing..."; \
-		git clone git@github.com:codam-coding-college/MLX42.git $(LIBMLX); \
+		git clone https://github.com/codam-coding-college/MLX42 $(LIBMLX); \
 	fi
 	@cmake -B $(LIBMLX)/build $(LIBMLX) && cmake --build $(LIBMLX)/build -j4
 
