@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:40:12 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/14 15:20:54 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/30 22:25:02 by toru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include "libft/libft.h"
 # include <stdio.h> // delete me please
 
+# define MAX_PL 999
+# define MAX_SP 999
+# define MAX_CY 999
+
+/*
+Acceptable values = 000.000 and -000.000
+*/
 /*
 	What each argument in the struct is:
 	int A = Ambient Lighting (need below);
@@ -48,6 +55,9 @@
 	int height = height;
 */
 
+/*	actors	*/
+
+
 typedef struct	s_vec
 {
 	float	x;
@@ -62,6 +72,69 @@ typedef	struct s_color
 	int G;
 } t_color;
 
+typedef struct s_ray
+{
+	float	r;	
+	t_vec	start;
+	t_vec	direction;
+}	t_ray;
+
+typedef struct s_amb
+{
+	int			id;
+	float		ratio;
+	t_color		color;
+}	t_amb;
+
+typedef struct s_cam
+{
+	int			id; 	//get_cam
+	float		fov;	//get_cam
+	t_vec		point;	//get_cam
+	t_vec		or_vec;	//get_cam
+	t_vec		first_px;
+	t_vec		px_delta_u;
+	t_vec		px_delta_v;
+}	t_cam;
+
+typedef struct s_lit
+{
+	int		id;
+	t_vec	point;
+	float	bright;
+	t_color	col;
+	t_vec	light_dir;
+	t_vec	light_color;
+	t_vec	lighting;
+	t_ray	shadow_ray;
+}	t_lit;
+
+typedef struct s_sp
+{
+	int		id;//get_sphere
+	t_vec	center;//get_sphere
+	float	diameter;//get_sphere
+	t_color	col;//get_sphere
+}	t_sp;
+
+typedef struct s_pl
+{
+	int		id;
+	t_vec	point;
+	t_vec	normal;
+	t_color	col;
+}	t_pl;
+
+typedef struct s_cy
+{
+	int		id;//get_cylinder
+	t_vec	center;//get_cylinder
+	t_vec	axis;//get_cylinder
+	float	diameter;//get_cylinder
+	float	height;//get_cylinder
+	t_color	col;//get_cylinder
+}	t_cy;
+
 typedef struct s_arg
 {
 	int A; 
@@ -74,7 +147,7 @@ typedef struct s_arg
 	int L;
 	float bright;
 	int sp;
-	int diameter;
+	float diameter;
 	int pl;
 	int cy;
 	float height;
@@ -84,6 +157,15 @@ typedef struct s_arg
 typedef struct s_minirt
 {
 	t_arg	*l_list;
+	t_amb	amb;
+	t_cam	cam;
+	t_lit	l;
+	t_sp	sp[MAX_SP];
+	int		sp_count;
+	t_pl	pl[MAX_PL];
+	int		pl_count;
+	t_cy	cy[MAX_CY];
+	int		cy_count;
 	char	*line;
 	int		fd;
 } t_minirt;
@@ -110,6 +192,9 @@ int		add_coor(char *values, t_arg *new);
 int		add_threed(char *values, t_arg *new);
 int		add_horizontal(char *values, t_arg *new);
 int		add_diameter(char *str, t_arg *new);
+int		val_num(char **val);
+int		add_height(char *str, t_arg *new);
+
 
 
 /*		MAKING LINKED lIST		*/

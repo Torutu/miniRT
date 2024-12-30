@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:13:40 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/10 13:08:39 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/27 12:31:23 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	add_camera(char **values, t_minirt *rt)
 		|| add_horizontal(values[3], new) == 1)
 	{
 		free_split(values);
+		free(new);
 		free_minirt(rt, "Error: Invalid Input\n");
 	}
 	ft_lstadd_back_rt(&rt->l_list, new);

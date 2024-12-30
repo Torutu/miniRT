@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:20:54 by sataskin          #+#    #+#             */
-/*   Updated: 2023/11/09 14:25:44 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/30 17:14:49 by toru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (index < n)
 	{
 		if (temp[index] == u_c)
-			return ((void *)(temp + index));
+			return ((void *)&temp[index]);
 		index++;
 	}
 	return (NULL);

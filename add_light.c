@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:19:43 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/10 15:46:46 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/27 12:32:47 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void add_light(char **values, t_minirt *rt)
 	if (add_coor(values[1], new) == 1 || add_brightness(values[2], new) == 1)
 	{
 		free_split(values);
+		free(new);
 		free_minirt(rt, "Error: Invalid Input\n");
 	}
 	ft_lstadd_back_rt(&rt->l_list, new);

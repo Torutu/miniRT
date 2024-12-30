@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   diameter.c                                         :+:      :+:    :+:   */
+/*   val_num.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 16:26:02 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/30 17:15:54 by toru             ###   ########.fr       */
+/*   Created: 2024/12/27 10:54:12 by sataskin          #+#    #+#             */
+/*   Updated: 2024/12/27 11:52:01 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,18 @@ static int  val_string(char *str)
     return (0);
 }
 
-int	add_diameter(char *str, t_arg *new)
+int val_num(char **val)
 {
-	// int	i;
+    int i;
 
-	// i = 0;
-	if (val_string(str) == 1)
-		return (1);
-	new->diameter = ft_atof(str);
-	return (0);
+    i = 1;
+    while (val[i] != NULL)
+    {
+        if (val_string(val[i]) == 1)
+            return (1);
+        i++;
+    }
+    if (i == 0)
+        return (1);
+    return (0);
 }

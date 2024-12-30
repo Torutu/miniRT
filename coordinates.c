@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coordinates.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:29:16 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/12 13:46:08 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/30 17:15:38 by toru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,19 @@ static int	check_coor(char *values)
 int	add_coor(char *values, t_arg *new)
 {
 	char	**coor;
-	int		i;
+	// int		i;
 
-	i = 0;
+	// i = 0;
 	if (check_coor(values) == 1)
 		return (1);
 	coor = ft_split(values, ',');
 	if (!coor)
 		return (1);
+	if (val_num(coor) == 1)
+		return(free_minirt_coor(coor));
 	new->coor.x = ft_atof(coor[0]);
 	new->coor.y = ft_atof(coor[1]);
 	new->coor.z = ft_atof(coor[2]);
-	if ((ft_strlen(coor[0]) > 4 || (new->coor.x < 0 && ft_strlen(coor[0]) > 5)) 
-		|| (ft_strlen(coor[1]) > 4 || (new->coor.y < 0 && ft_strlen(coor[1]) > 5))
-		|| (ft_strlen(coor[2]) > 4 || (new->coor.z < 0 && ft_strlen(coor[2]) > 5)))
-		return(free_minirt_coor(coor));
 	free_split(coor);
 	return (0);
 }

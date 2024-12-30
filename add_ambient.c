@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_ambient.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:07:54 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/04 11:29:24 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/30 22:11:51 by toru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	add_ambient(char **values, t_minirt *rt)
 	if (add_lighting_ratio(values[1], new) == 1 || add_colors(values[2], new) == 1)
 	{
 		free_split(values);
+		free(new);
 		free_minirt(rt, "Error: Invalid Input\n");
 	}
 	ft_lstadd_back_rt(&rt->l_list, new);

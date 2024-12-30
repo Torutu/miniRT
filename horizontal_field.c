@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:37:02 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/10 12:50:38 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/27 11:47:59 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	add_horizontal(char *values, t_arg *new)
 			return (1);
 		i++;
 	}
+	if (ft_strlen(values) > 3)
+		return (1);
 	new->FOV = ft_atoi(values);
 	if (new->FOV > 180 || new->FOV < 0)
 		return (1);

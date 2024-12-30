@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:15:02 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/10 16:36:16 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:56:08 by toru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	arguments(char **values, int amount)
 void	add_sphere(char **values, t_minirt *rt)
 {
 	t_arg	*new;
-
+	rt->sp_count++;
 	if (arguments(values, 4) > 0)
 	{
 		free_split(values);
@@ -53,6 +53,7 @@ void	add_sphere(char **values, t_minirt *rt)
 		|| add_diameter(values[2], new) == 1)
 	{
 		free_split(values);
+		free(new);
 		free_minirt(rt, "Error: Invalid Input\n");		
 	}
 	ft_lstadd_back_rt(&rt->l_list, new);

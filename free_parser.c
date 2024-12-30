@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:53:55 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/12 13:48:05 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/27 11:24:08 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	free_minirt(t_minirt *freeable, char *error)
 	t_arg	*temp;
 
 	temp = NULL;
-	if (freeable->fd > 0)
-		close(freeable->fd);
 	if (freeable->line != NULL)
 		free(freeable->line);
 	if (error != NULL)
@@ -43,7 +41,7 @@ void free_split(char **str)
 {
 	int i;
 	i = 0;
-	while (str[i])
+	while (str[i] != NULL)
 	{
 		free(str[i]);
 		i++;

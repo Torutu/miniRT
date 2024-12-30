@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:27:12 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/11 12:31:07 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/30 21:10:16 by toru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	arguments(char **values, int amount)
 void	add_plane(char **values, t_minirt *rt)
 {
 	t_arg	*new;
-
+	rt->pl_count++;
 	if (arguments(values, 4) > 0)
 	{
 		free_split(values);
@@ -52,6 +52,7 @@ void	add_plane(char **values, t_minirt *rt)
 		|| add_colors(values[3], new) == 1)
 	{
 		free_split(values);
+		free(new);
 		free_minirt(rt, "Error: Invalid Input\n");		
 	}
 	ft_lstadd_back_rt(&rt->l_list, new);

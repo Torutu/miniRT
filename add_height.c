@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   diameter.c                                         :+:      :+:    :+:   */
+/*   add_height.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 16:26:02 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/30 17:15:54 by toru             ###   ########.fr       */
+/*   Created: 2024/12/27 11:53:10 by sataskin          #+#    #+#             */
+/*   Updated: 2024/12/27 11:54:08 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,10 @@ static int  val_string(char *str)
     return (0);
 }
 
-int	add_diameter(char *str, t_arg *new)
+int	add_height(char *str, t_arg *new)
 {
-	// int	i;
-
-	// i = 0;
 	if (val_string(str) == 1)
-		return (1);
-	new->diameter = ft_atof(str);
+        return (1);
+	new->height = ft_atof(str);
 	return (0);
 }

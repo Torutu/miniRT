@@ -3,64 +3,117 @@
 /*                                                        :::      ::::::::   */
 /*   content_val.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:42:29 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/14 15:22:00 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/30 22:09:06 by toru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static void print_ll(t_arg *ll)
+static void get_cylinder(t_minirt *rt, t_arg *temp, int i, int j)
+{
+    rt->cy[j].id = i;
+    rt->cy[j].center.x = temp->coor.x;
+    rt->cy[j].center.y = temp->coor.y;
+    rt->cy[j].center.z = temp->coor.z;
+    rt->cy[j].axis.x = temp->coor3d.x;
+    rt->cy[j].axis.y = temp->coor3d.y;
+    rt->cy[j].axis.z = temp->coor3d.z;
+    rt->cy[j].diameter = temp->diameter;
+    rt->cy[j].height = temp->height;
+    rt->cy[j].col.R = temp->color.R;
+    rt->cy[j].col.G = temp->color.G;
+    rt->cy[j].col.B = temp->color.B;
+}
+
+static void get_plane(t_minirt *rt, t_arg *temp, int i, int j)
+{
+	rt->pl[j].id = i;
+	rt->pl[j].point.x = temp->coor.x;
+	rt->pl[j].point.y = temp->coor.y;
+	rt->pl[j].point.z = temp->coor.z;
+	rt->pl[j].normal.x = temp->coor3d.x;
+	rt->pl[j].normal.y = temp->coor3d.y;
+	rt->pl[j].normal.z = temp->coor3d.z;
+	rt->pl[j].col.R = temp->color.R;
+	rt->pl[j].col.G = temp->color.G;
+	rt->pl[j].col.B = temp->color.B;
+}
+
+static void get_sphere(t_minirt *rt, t_arg *temp, int i, int j)
+{
+	rt->sp[j].id = i;
+	rt->sp[j].center.x = temp->coor.x;
+	rt->sp[j].center.y = temp->coor.y;
+	rt->sp[j].center.z = temp->coor.z;
+	rt->sp[j].col.R = temp->color.R;
+	rt->sp[j].col.G = temp->color.G;
+	rt->sp[j].col.B = temp->color.B;
+	rt->sp[j].diameter = temp->diameter;
+}
+
+static void get_light(t_minirt *rt,t_arg *temp, int i)
+{
+	rt->l.id = i;
+	rt->l.point.x = temp->coor.x;
+	rt->l.point.y = temp->coor.y;
+	rt->l.point.z = temp->coor.z;
+	rt->l.bright = temp->bright;
+}
+
+static void get_cam(t_minirt *rt,t_arg *temp, int i)
+{
+	rt->cam.id = i;
+	rt->cam.point.x = temp->coor.x;
+	rt->cam.point.y = temp->coor.y;
+	rt->cam.point.z = temp->coor.z;
+	rt->cam.or_vec.x = temp->coor3d.x;
+	rt->cam.or_vec.y = temp->coor3d.y;
+	rt->cam.or_vec.z = temp->coor3d.z;
+	rt->cam.fov = temp->FOV;
+}
+
+static void	get_amb(t_minirt *rt,t_arg *temp, int i)
+{
+	rt->amb.id = i;
+	rt->amb.color.R = temp->color.R;
+	rt->amb.color.G = temp->color.G;
+	rt->amb.color.B = temp->color.B;
+	rt->amb.ratio = temp->l_rat;
+}
+
+static void print_ll(t_minirt *rt, t_arg *ll)
 {
 	t_arg *temp;
 	int		i = 0;
-
+	int		sp = 0;
+	int		pl = 0;
+	int		cy = 0;
 	temp = ll;
 	while (temp != NULL)
 	{
 		if (temp->A == 1)
-		{
-			printf("\nnode %i is ambient lighting\n", i);
-			printf("colors are\nR = %i\nG = %i\nB = %i\n", temp->color.R, temp->color.G, temp->color.B);
-			printf("lighting ratio is = %f\n", temp->l_rat);
-		}
+			get_amb(rt, temp, i);
 		if (temp->C == 1)
-		{
-			printf("\nnode %i is camera\n", i);
-			printf("coordinates are\nX = %f\nY = %f\nZ = %f\n", temp->coor.x, temp->coor.y, temp->coor.z);
-			printf("3d normalized orientation vectors are\nX = %f\nY = %f\nZ = %f\n", temp->coor3d.x, temp->coor3d.y, temp->coor3d.z);
-			printf("horizontal field view is = %i\n", temp->FOV);
-		}
+			get_cam(rt, temp, i);
 		if (temp->L == 1)
-		{
-			printf("\nnode %i is a light\n", i);
-			printf("coordinates are\nX = %f\nY = %f\nZ = %f\n", temp->coor.x, temp->coor.y, temp->coor.z);
-			printf("light brightness ratio is= %f\n", temp->bright);				
-		}
+			get_light(rt, temp, i);
 		if (temp->sp == 1)
 		{
-			printf("\nnode %i is a sphere\n", i);
-			printf("coordinates are\nX = %f\nY = %f\nZ = %f\n", temp->coor.x, temp->coor.y, temp->coor.z);
-			printf("colors are\nR = %i\nG = %i\nB = %i\n", temp->color.R, temp->color.G, temp->color.B);
-			printf("diameter is= %i\n", temp->diameter);			
+			get_sphere(rt, temp, i, sp);
+			sp++;	
 		}
 		if (temp->pl == 1)
 		{
-			printf("\nnode %i is a plane\n", i);
-			printf("coordinates are\nX = %f\nY = %f\nZ = %f\n", temp->coor.x, temp->coor.y, temp->coor.z);
-			printf("3d normalized orientation vectors are\nX = %f\nY = %f\nZ = %f\n", temp->coor3d.x, temp->coor3d.y, temp->coor3d.z);
-			printf("colors are\nR = %i\nG = %i\nB = %i\n", temp->color.R, temp->color.G, temp->color.B);
+			get_plane(rt, temp, i, pl);
+			pl++;
 		}
 		if (temp->cy == 1)
 		{
-			printf("\nnode %i is a cylinder\n", i);
-			printf("coordinates are\nX = %f\nY = %f\nZ = %f\n", temp->coor.x, temp->coor.y, temp->coor.z);
-			printf("diameter is= %i\n", temp->diameter);
-			printf("3d normalized orientation vectors are\nX = %f\nY = %f\nZ = %f\n", temp->coor3d.x, temp->coor3d.y, temp->coor3d.z);
-			printf("colors are\nR = %i\nG = %i\nB = %i\n", temp->color.R, temp->color.G, temp->color.B);
-			printf("height is= %f\n", temp->height);
+			get_cylinder(rt, temp, i, cy);
+			cy++;
 		}
 		temp = temp->next;
 		i++;
@@ -100,10 +153,7 @@ static void	get_values(char *line, t_minirt *rt)
 	else if (ft_strcmp(values[0], "pl") == 0)
 		add_plane(values, rt);
 	else if (ft_strcmp(values[0], "cy") == 0)
-	{
-		printf("going to add cylinder\n");
 		add_cylinder(values, rt);
-	}
 	else
 		free_minirt(rt, "ERROR: Invalid Input in FILE\n");
 	free_split(values);
@@ -114,6 +164,9 @@ void check_content(char *file, t_minirt *rt)
 	rt->fd = open(file, O_RDONLY);
 	rt->l_list = NULL;
 	rt->line = NULL;
+	rt->sp_count = 0;
+	rt->pl_count = 0;
+	rt->cy_count = 0;
 	while (1)
 	{
 		rt->line = get_next_line(rt->fd);
@@ -127,8 +180,7 @@ void check_content(char *file, t_minirt *rt)
 		get_values(rt->line, rt);
 		free(rt->line);
 	}
-	//print_ll(rt->l_list);
+	print_ll(rt ,rt->l_list);
 	close(rt->fd);
 	rt->fd = -1;
 }
-
