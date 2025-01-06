@@ -6,7 +6,7 @@
 #    By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 11:36:21 by sataskin          #+#    #+#              #
-#    Updated: 2024/10/16 11:06:31 by sataskin         ###   ########.fr        #
+#    Updated: 2024/10/28 11:20:07 by sataskin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SOURCE = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c\
 		ft_strlcat.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c\
 		ft_strtrim.c ft_striteri.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c\
 		ft_putendl_fd.c ft_putnbr_fd.c ft_itoa.c ft_split.c ft_strcmp.c \
-		get_next_line.c
+		get_next_line.c ft_atof.c
 		
 OBJECT = $(SOURCE:.c=.o)
 

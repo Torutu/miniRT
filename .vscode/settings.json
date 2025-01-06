@@ -1,4 +1,11 @@
 {
     "42header.email": "walnaimi@student.hive.fi",
-    "42header.username": "walnaimi"
+    "42header.username": "walnaimi",
+    "files.associations": {
+        "minirt.h": "c",
+        "libft.h": "c",
+        "stdio.h": "c",
+        "random": "c",
+        "stdlib.h": "c"
+    }
 }

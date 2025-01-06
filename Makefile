@@ -6,20 +6,51 @@
 #    By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 17:03:00 by sataskin          #+#    #+#              #
-#    Updated: 2024/11/05 15:12:46 by walnaimi         ###   ########.fr        #
+#    Updated: 2025/01/06 16:08:54 by walnaimi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = miniRT
+NAME = minirt
 LIBMLX := ./MLX42
 HEADERS := -I $(LIBMLX)/include
 
 LIBFT = ./libft/libft.a
 
-SRCS = main.c \
-	   content_val.c \
-	   file_val.c \
-	   studio.c
+#HEADERS    := -I $(LIBMLX)/include
+
+SRCS = add_ambient.c \
+		add_camera.c \
+		add_cylinder.c \
+		add_height.c \
+		add_light.c \
+		add_plane.c \
+		add_sphere.c \
+		colors.c \
+		content_val.c \
+		coordinates.c \
+		diameter.c \
+		file_val.c \
+		free_parser.c \
+		horizontal_field.c \
+		lighting_ratio.c \
+		make_list.c \
+		orientation_vector.c \
+		parsing_functions.c \
+		val_num.c \
+		execute/cylinder_hit.c \
+		execute/cylinder.c \
+		execute/cylinder1.c \
+		execute/execution.c \
+		execute/init_lens.c \
+		execute/hooks.c \
+		execute/plane.c \
+		execute/ray.c \
+		execute/shadow_legend.c \
+		execute/sphere.c \
+		execute/utils.c \
+		execute/vectooor.c \
+		execute/vectooor1.c \
+		main.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -36,7 +67,7 @@ all: libmlx $(LIBFT) $(NAME)
 $(LIBMLX):
 	@if [ ! -d "$(LIBMLX)" ]; then \
 		echo "$(COLOR_GREEN)Cloning MLX42 repository...$(COLOR_RESET)"; \
-		git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX); \
+		git clone git@github.com:codam-coding-college/MLX42.git $(LIBMLX); \
 	fi
 
 # Build libft
@@ -54,7 +85,7 @@ libmlx: $(LIBMLX)
 # Link the final executable
 $(NAME): $(OBJS) $(LIBFT)
 	@cc -Wall -Wextra -Werror -g $(OBJS) $(LIBS) $(LIBFT) $(HEADERS) -o $@
-	@echo "$(COLOR_GREEN)miniRT is compiled$(COLOR_RESET)"
+	@echo "$(COLOR_GREEN)minirt is compiled$(COLOR_RESET)"
 
 # Clean up object files and libmlx build directory
 clean:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_val.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:39:46 by sataskin          #+#    #+#             */
-/*   Updated: 2024/11/05 16:01:33 by walnaimi         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:22:31 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ static void	check_dir(char *file)
 	if (fd > 0)
 	{
 		close(fd);
-		write(2, "Error\nThis is a directory!\n", 27);
+		write(2, "Error\nThis is a directory!", 27);
 		exit(1);
 	}
-	close(fd);
 }
 
 static void	check_file(char *file)
@@ -34,7 +33,7 @@ static void	check_file(char *file)
 	if (fd < 0)
 	{
 		close(fd);
-		write(2, "Error\nCould not open file\n", 26);
+		write(2, "Error\nCould not open file", 26);
 		exit(1);
 	}
 	close(fd);
@@ -47,12 +46,12 @@ static void	check_file_format(char *str)
 	i = ft_strlen(str);
 	if (i < 3)
 	{
-		write(2, "Error\nInvalid file name\n", 24);
+		write(2, "Error\nInvalid file name", 24);
 		exit(1);
 	}
 	if ((ft_strcmp(&str[i - 3], ".rt")) != 0)
 	{
-		write(2, "Error\nInvalid file name\n", 24);
+		write(2, "Error\nInvalid file name", 24);
 		exit(1);
 	}
 }

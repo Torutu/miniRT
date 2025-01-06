@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:46:08 by sataskin          #+#    #+#             */
-/*   Updated: 2024/10/16 11:06:17 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/10/28 11:59:28 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ft_putnbr_fd(int n, int fd);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 int		ft_strcmp( char *s1, char *s2);
+float	ft_atof(const char *str);
 
 /*BONUS FUNCTIONS*/
 

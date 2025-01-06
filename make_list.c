@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   make_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 15:30:07 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/27 12:28:54 by sataskin         ###   ########.fr       */
+/*   Created: 2024/11/13 11:46:29 by sataskin          #+#    #+#             */
+/*   Updated: 2024/11/13 11:48:08 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "miniRT.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
+void	ft_lstadd_back_rt(t_arg **lst, t_arg *new)
+{
+	t_arg	*node;
 
-# define BUFFER_SIZE 1
-
-# define FD_SIZE 4096
-
-char	*get_next_line(int fd);
-char	*ft_ret_strdel(char **string);
-
-#endif
+	node = *lst;
+	if (!new)
+		return ;
+	else if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		while (node->next != NULL)
+			node = node->next;
+		node->next = new;
+	}
+}
