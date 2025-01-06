@@ -1,50 +1,22 @@
 #include "../miniRT.h"
 
-// float	hit_sphere(t_vec center, float radius, t_ray ray)
-// {
-// 	t_vec	og_to_cent;
-// 	float	a;
-// 	float	b;
-// 	float	c;
-// 	float	discriminant;
-
-// 	og_to_cent = vec_sub(center, ray.start);
-// 	a = dot_vec(ray.direction, ray.direction);
-// 	b = -2.0 * dot_vec(ray.direction, og_to_cent);
-// 	c = dot_vec(og_to_cent, og_to_cent) - radius * radius;
-// 	discriminant = b * b - 4 * a * c;
-// 	if (discriminant < 0)
-// 		return (-1.0);
-// 	return ((-b - sqrtf(discriminant)) / (2.0 * a));
-// }
-
 float	hit_sphere(t_vec center, float radius, t_ray ray)
 {
-	t_vec	og_to_cent;
-	float	a;
-	float	b;
-	float	c;
-	float	discriminant;
-	float	t1;
-	float	t2;
-	// Calculate the quadratic coefficients
-	og_to_cent = vec_sub(center, ray.start);
-	a = dot_vec(ray.direction, ray.direction);
-	b = -2.0 * dot_vec(ray.direction, og_to_cent);
-	c = dot_vec(og_to_cent, og_to_cent) - radius * radius;
-	// Calculate the discriminant
-	discriminant = b * b - 4 * a * c;
-	// If the discriminant is negative, there are no intersections
-	if (discriminant < 0)
+	t_sp_body	sp;
+	sp.og_to_cent = vec_sub(center, ray.start);
+	sp.a = dot_vec(ray.direction, ray.direction);
+	sp.b = -2.0 * dot_vec(ray.direction, sp.og_to_cent);
+	sp.c = dot_vec(sp.og_to_cent, sp.og_to_cent) - radius * radius;
+	sp.discriminant = sp.b * sp.b - 4 * sp.a * sp.c;
+	if (sp.discriminant < 0)
 		return (-1.0);
-	// Calculate the two intersection points
-	t1 = (-b - sqrtf(discriminant)) / (2.0 * a); // Closer intersection
-	t2 = (-b + sqrtf(discriminant)) / (2.0 * a); // Farther intersection
-	if (t1 > RAY_MIN)// Return the smallest positive t value (valid intersection)
-		return (t1);
-	if (t2 > RAY_MIN)
-		return (t2);
-	return (-1.0);// If both t1 and t2 are negative, no valid intersection
+	sp.t1 = (-sp.b - sqrtf(sp.discriminant)) / (2.0 * sp.a);
+	sp.t2 = (-sp.b + sqrtf(sp.discriminant)) / (2.0 * sp.a);
+	if (sp.t1 > RAY_MIN)
+		return (sp.t1);
+	if (sp.t2 > RAY_MIN)
+		return (sp.t2);
+	return (-1.0);
 }
 
 

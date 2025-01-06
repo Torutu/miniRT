@@ -34,35 +34,6 @@ float	hit_bot_cap(t_vec axis_dir, t_vec bot_cap_c, t_ray ray, float r)
 	return (t_cap_bot);
 }
 
-float	hit_cyl_body(t_ray ray, t_cy c, float r, float h)
-{
-	t_cyl_body	cy;
-
-	cy.oc = vec_sub(ray.start, c.center);
-	cy.oc_perp = vec_sub(cy.oc, vec_mult(c.axis, dot_vec(cy.oc, c.axis)));
-	cy.ray_dir_perp = vec_sub(ray.direction,
-			vec_mult(c.axis, dot_vec(ray.direction, c.axis)));
-	cy.a = dot_vec(cy.ray_dir_perp, cy.ray_dir_perp);
-	cy.b = 2.0f * dot_vec(cy.ray_dir_perp, cy.oc_perp);
-	cy.c = dot_vec(cy.oc_perp, cy.oc_perp) - r * r;
-	cy.discriminant = cy.b * cy.b - 4.0f * cy.a * cy.c;
-	if (cy.discriminant < 0.0f)
-		return (-1.0f);
-	cy.sqrt_discriminant = sqrtf(cy.discriminant);
-	cy.t1 = (-cy.b - cy.sqrt_discriminant) / (2.0f * cy.a);
-	cy.t2 = (-cy.b + cy.sqrt_discriminant) / (2.0f * cy.a);
-	cy.t_cylinder = -1.0f;
-	cy.p1 = vec_add(ray.start, vec_mult(ray.direction, cy.t1));
-	cy.p2 = vec_add(ray.start, vec_mult(ray.direction, cy.t2));
-	cy.z1 = dot_vec(vec_sub(cy.p1, c.center), c.axis);
-	cy.z2 = dot_vec(vec_sub(cy.p2, c.center), c.axis);
-	if (cy.t1 > 0 && cy.z1 >= -h / 2.0f && cy.z1 <= h / 2.0f)
-		cy.t_cylinder = cy.t1;
-	else if (cy.t2 > 0 && cy.z2 >= -h / 2.0f && cy.z2 <= h / 2.0f)
-		cy.t_cylinder = cy.t2;
-	return (cy.t_cylinder);
-}
-
 float	hit_cylinder(t_cy c, t_ray ray)
 {
 	float		t_cylinder;

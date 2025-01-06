@@ -1,13 +1,15 @@
 #include "../miniRT.h"
 
-float	hit_plane(t_vec normal, t_vec point, t_ray ray)
+float	hit_plane(t_vec norm, t_vec point, t_ray ray)
 {
 	float	denom;
+	float	p;
 
-	denom = dot_vec(normal, ray.direction);
-	if (fabs(denom) > 0.00001f)
+	denom = dot_vec(norm, ray.direction);
+	if(fabs(denom) > 0.00001f)
 	{
-		return (dot_vec(vec_sub(point, ray.start), normal) / denom);
+		p = dot_vec(vec_sub(point, ray.start), norm) / denom;
+		return (p);
 	}
 	return (-1.0);
 }

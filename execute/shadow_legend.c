@@ -1,6 +1,6 @@
 #include "../miniRT.h"
 
-static int	sphere_shadow(t_minirt rt, int *in_shadow, t_hit_info h_rec)
+static int	sphere_shadow(t_minirt rt, int *in_shadow, t_hit_info ray_info)
 {
 	int	i;
 
@@ -9,7 +9,7 @@ static int	sphere_shadow(t_minirt rt, int *in_shadow, t_hit_info h_rec)
 	{
 		if (hit_sphere(rt.sp[i].center, rt.sp[i].radius, rt.l.shadow_ray) > 0.0)
 		{
-			if (h_rec.shape == 0 && h_rec.id == i)
+			if (ray_info.shape == 0 && ray_info.id == i)
 				continue ;
 			*in_shadow = 1;
 			return (1);
@@ -18,7 +18,7 @@ static int	sphere_shadow(t_minirt rt, int *in_shadow, t_hit_info h_rec)
 	return (0);
 }
 
-static int	cylinder_shadow(t_minirt rt, int *in_shadow, t_hit_info h_rec)
+static int	cylinder_shadow(t_minirt rt, int *in_shadow, t_hit_info ray_info)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ static int	cylinder_shadow(t_minirt rt, int *in_shadow, t_hit_info h_rec)
 	{
 		if (hit_cylinder(rt.cy[i], rt.l.shadow_ray) > 0.0)
 		{
-			if (h_rec.shape == 2 && h_rec.id == i)
+			if (ray_info.shape == 2 && ray_info.id == i)
 				continue ;
 			*in_shadow = 1;
 			return (1);
@@ -36,7 +36,7 @@ static int	cylinder_shadow(t_minirt rt, int *in_shadow, t_hit_info h_rec)
 	return (0);
 }
 
-static void	plane_shadow(t_minirt rt, int *in_shadow, t_hit_info h_rec)
+static void	plane_shadow(t_minirt rt, int *in_shadow, t_hit_info ray_info)
 {
 	int		i;
 	float	t_hit;
@@ -51,7 +51,7 @@ static void	plane_shadow(t_minirt rt, int *in_shadow, t_hit_info h_rec)
 			light_dist = vec_len(rt.l.light_dir);
 			if (t_hit < light_dist)
 			{
-				if (h_rec.shape == 1 && h_rec.id == i)
+				if (ray_info.shape == 1 && ray_info.id == i)
 					continue ;
 				*in_shadow = 1;
 				return ;
@@ -60,33 +60,33 @@ static void	plane_shadow(t_minirt rt, int *in_shadow, t_hit_info h_rec)
 	}
 }
 
-void	compute_lighting(t_color *color, t_minirt rt, t_hit_info h_rec)
+void	compute_lighting(t_color *color, t_minirt rt, t_hit_info ray_info)
 {
 	float		diffuse_strength;
 	t_vec		diffuse;
 
 	rt.l.light_color = (t_vec){1.0, 1.0, 1.0};
 	rt.l.lighting = (t_vec){1.0, 1.0, 1.0};
-	diffuse_strength = fmaxf(0.0, dot_vec(rt.l.light_dir, h_rec.normal));
+	diffuse_strength = fmaxf(0.0, dot_vec(rt.l.light_dir, ray_info.normal));
 	diffuse = vec_mult(rt.l.light_color, diffuse_strength);
 	rt.l.lighting = vec_add(vec_mult((t_vec)
 			{rt.amb.ratio, rt.amb.ratio, rt.amb.ratio}, 0.3),
 			vec_mult(diffuse, rt.l.bright));
-	*color = (t_color){h_rec.color.R * rt.l.lighting.x,
-		h_rec.color.G * rt.l.lighting.y, h_rec.color.B * rt.l.lighting.z};
+	*color = (t_color){ray_info.color.R * rt.l.lighting.x,
+		ray_info.color.G * rt.l.lighting.y, ray_info.color.B * rt.l.lighting.z};
 	color->R = fminf(fmaxf(color->R, 0.0), 255.0);
 	color->G = fminf(fmaxf(color->G, 0.0), 255.0);
 	color->B = fminf(fmaxf(color->B, 0.0), 255.0);
 }
 
-void	check_shadow(t_minirt rt, int *in_shadow, t_hit_info h_rec)
+void	check_shadow(t_minirt rt, int *in_shadow, t_hit_info ray_info)
 {
-	rt.l.shadow_ray.start = h_rec.point;
+	rt.l.shadow_ray.start = ray_info.point;
 	rt.l.shadow_ray.direction = rt.l.light_dir;
 	*in_shadow = 0;
-	if (sphere_shadow(rt, in_shadow, h_rec) == 1)
+	if (sphere_shadow(rt, in_shadow, ray_info) == 1)
 		return ;
-	if (cylinder_shadow(rt, in_shadow, h_rec) == 1)
+	if (cylinder_shadow(rt, in_shadow, ray_info) == 1)
 		return ;
-	plane_shadow(rt, in_shadow, h_rec);
+	plane_shadow(rt, in_shadow, ray_info);
 }

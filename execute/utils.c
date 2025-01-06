@@ -1,6 +1,8 @@
 #include "../miniRT.h"
 
-
+/*
+*   
+*/
 void	set_px_col(mlx_image_t *img, int x, int y, unsigned int color)
 {
 	int	index;

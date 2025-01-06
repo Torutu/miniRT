@@ -6,7 +6,7 @@
 #    By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 17:03:00 by sataskin          #+#    #+#              #
-#    Updated: 2025/01/05 20:59:05 by walnaimi         ###   ########.fr        #
+#    Updated: 2025/01/06 16:08:54 by walnaimi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS = add_ambient.c \
 		orientation_vector.c \
 		parsing_functions.c \
 		val_num.c \
+		execute/cylinder_hit.c \
 		execute/cylinder.c \
 		execute/cylinder1.c \
 		execute/execution.c \

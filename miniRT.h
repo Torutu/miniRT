@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:40:12 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/06 03:10:57 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/06 16:42:11 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,19 @@ typedef struct s_init_cam
 	t_vec		cam_y_axis;
 }	t_init_cam;
 
+typedef	struct s_sp_body
+{
+	t_vec og_to_cent;
+	float a;
+	float b;
+	float c;
+	float discriminant;
+	float sqrt_discriminant;
+	float t1;
+	float t2;
+}	t_sp_body;
+
+
 typedef struct s_sp
 {
 	int		id;//get_sphere
@@ -182,7 +195,7 @@ typedef struct s_cyl_body
 {
 	float	t_cylinder;
 	t_vec	oc;
-	t_vec	oc_perp;
+	t_vec	oc_per;
 	t_vec	ray_dir_perp;
 	float	a;
 	float	b;
@@ -309,10 +322,10 @@ int		get_rgba(int r, int g, int b, int a);
 void	set_px_col(mlx_image_t *img, int x, int y, unsigned int color);
 
 /*		CHECKS					*/
-void	check_spheres(t_ray ray, t_minirt rt, t_hit_info *h_rec);
-void	check_planes(t_ray ray, t_minirt rt, t_hit_info *h_rec);
-void	check_cylinders(t_ray ray, t_minirt rt, t_hit_info *h_rec);
-void	check_shadow(t_minirt rt, int *in_shadow, t_hit_info h_rec);
+void	check_spheres(t_ray ray, t_minirt rt, t_hit_info *ray_info);
+void	check_planes(t_ray ray, t_minirt rt, t_hit_info *ray_info);
+void	check_cylinders(t_ray ray, t_minirt rt, t_hit_info *ray_info);
+void	check_shadow(t_minirt rt, int *in_shadow, t_hit_info ray_info);
 
 /*		lens					*/
 void 	calculate_viewport(t_minirt *rt, t_init_cam *i);
@@ -331,7 +344,7 @@ float	hit_cyl_body(t_ray ray, t_cy c, float r, float h);
 float	hit_bot_cap(t_vec axis_dir, t_vec bot_cap_c, t_ray ray, float r);
 float	hit_top_cap(t_vec axis_dir, t_vec top_cap_c, t_ray ray, float r);
 
-void	compute_lighting(t_color *color, t_minirt rt, t_hit_info h_rec);
+void	compute_lighting(t_color *color, t_minirt rt, t_hit_info ray_info);
 
 t_color color_mult(t_color col, float a);
 t_color color_sub(t_color col, float a);
