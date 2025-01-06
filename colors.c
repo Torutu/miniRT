@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 10:53:45 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/30 17:15:24 by toru             ###   ########.fr       */
+/*   Updated: 2025/01/03 18:41:09 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ int	add_colors(char *values, t_arg *new)
 	new->color.R = ft_atoi(colors[0]);
 	if (new->color.R > 255 || new->color.R < 0)
 		return(free_minirt_c(colors));
-	new->color.G = ft_atoi(colors[1]);
-	if (new->color.G > 255 || new->color.G < 0)
-		return(free_minirt_c(colors));
-	new->color.B = ft_atoi(colors[2]);
+	new->color.B = ft_atoi(colors[1]);
 	if (new->color.B > 255 || new->color.B < 0)
+		return(free_minirt_c(colors));
+	new->color.G = ft_atoi(colors[2]);
+	if (new->color.G > 255 || new->color.G < 0)
 		return(free_minirt_c(colors));
 	free_split(colors);
 	return (0);

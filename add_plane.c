@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:27:12 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/30 21:10:16 by toru             ###   ########.fr       */
+/*   Updated: 2025/01/01 20:36:06 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	add_plane(char **values, t_minirt *rt)
 	if (arguments(values, 4) > 0)
 	{
 		free_split(values);
-		free_minirt(rt, "ERROR: Invalid Sphere\n");		
+		free_minirt(rt, "ERROR: Invalid Plane\n");		
 	}
 	new = ft_calloc(1, sizeof(t_arg));
 	if (!new)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_cylinder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:41:41 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/30 21:10:24 by toru             ###   ########.fr       */
+/*   Updated: 2025/01/01 20:36:00 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	add_cylinder(char **values, t_minirt *rt)
 	if (arguments(values, 6) > 0)
 	{
 		free_split(values);
-		free_minirt(rt, "ERROR: Invalid Sphere\n");		
+		free_minirt(rt, "ERROR: Invalid Cylinder\n");		
 	}
 	new = ft_calloc(1, sizeof(t_arg));
 	if (!new)
