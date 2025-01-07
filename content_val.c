@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   content_val.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:42:29 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 12:32:39 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:41:13 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@ static t_color apply_ambient(t_color obj_color, t_color amb_color, float ratio)
 {
     t_color result;
 
-	if (amb_color.R == 255 && amb_color.G == 255 && amb_color.B == 255)
-    	return obj_color;
+    if (amb_color.R == 255 && amb_color.G == 255 && amb_color.B == 255)
+        return (obj_color);
 
-	ratio *= 85;
+    ratio *= 85;
     result.R = (1 - ratio) * obj_color.R + ratio * amb_color.R;
     result.G = (1 - ratio) * obj_color.G + ratio * amb_color.G;
     result.B = (1 - ratio) * obj_color.B + ratio * amb_color.B;
 
-    // Clamp values to [0, 255]
-    result.R = result.R > 255 ? 255 : result.R;
-    result.G = result.G > 255 ? 255 : result.G;
-    result.B = result.B > 255 ? 255 : result.B;
+    // Clamp values to [0, 255] using simple if statements
+    if (result.R > 255)
+        result.R = 255;
+    if (result.G > 255)
+        result.G = 255;
+    if (result.B > 255)
+        result.B = 255;
 
-    return result;
+    return (result);
 }
-
-
-
 
 static void get_cylinder(t_minirt *rt, t_arg *temp, int i, int j)
 {
