@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:42:29 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 13:20:12 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:23:26 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static void	get_values(t_minirt *rt, t_arg *ll)
 	temp = ll;
 	while (temp != NULL)
 	{
-		if (temp->A == 1)
+		if (temp->a == 1)
 			get_amb(rt, temp, rt->ct.i);
-		if (temp->C == 1)
+		if (temp->c == 1)
 			get_cam(rt, temp, rt->ct.i);
-		if (temp->L == 1)
+		if (temp->l == 1)
 			get_light(rt, temp, rt->ct.i);
 		if (temp->sp == 1)
 		{

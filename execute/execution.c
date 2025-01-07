@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:46:48 by walnaimi          #+#    #+#             */
-/*   Updated: 2025/01/07 11:57:38 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:21:20 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static	void	render_scene(t_minirt *rt)
 					rt->cam.point, rt->cam.or_vec);
 			r.ray = init_ray(rt->cam.point, r.ray_direction);
 			r.color = ray_color(r.ray, *rt);
-			r.rgba = get_rgba(r.color.R, r.color.G, r.color.B, 255);
+			r.rgba = get_rgba(r.color.red, r.color.green, r.color.blue, 255);
 			set_px_col(rt->img, r.x, r.y, r.rgba);
 		}
 	}

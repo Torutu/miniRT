@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:40:12 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 13:14:22 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:31:03 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # define MAX_SP 999
 # define MAX_CY 999
 
-#define WIDTH 120
-#define HEIGHT	90
-#define PI 3.1415927f
+# define WIDTH 120
+# define HEIGHT	90
+# define PI 3.1415927f
 
 # define RAY_MIN 0.0001f
 # define RAY_MAX 1.0e30f
@@ -39,9 +39,9 @@ Acceptable values = 000.000 and -000.000
 	What each argument in the struct is:
 	int A = Ambient Lighting (need below);
 	int l_rat = ambient lighting ratio in range [0.0,1.0];
-	int R = ed color in range [0-255];
-	int G = reen color in range [0-255];
-	int B = lue color in range [0-255];
+	int red = ed color in range [0-255];
+	int green = reen color in range [0-255];
+	int blue = lue color in range [0-255];
 	
 	int C = Camera (need below);
 	int x = coordinate;
@@ -66,20 +66,19 @@ Acceptable values = 000.000 and -000.000
 
 /*	actors	*/
 
-
-typedef struct	s_vec
+typedef struct s_vec
 {
 	float	x;
 	float	y;
 	float	z;
 }	t_vec;
 
-typedef	struct s_color
+typedef struct s_color
 {
-	int R;
-	int B;
-	int G;
-} t_color;
+	int	red;
+	int	blue;
+	int	green;
+}	t_color;
 
 typedef struct s_ray
 {
@@ -154,25 +153,24 @@ typedef struct s_init_cam
 	t_vec		cam_y_axis;
 }	t_init_cam;
 
-typedef	struct s_sp_body
+typedef struct s_sp_body
 {
-	t_vec og_to_cent;
-	float a;
-	float b;
-	float c;
-	float discriminant;
-	float sqrt_discriminant;
-	float t1;
-	float t2;
+	t_vec	og_to_cent;
+	float	a;
+	float	b;
+	float	c;
+	float	discriminant;
+	float	sqrt_discriminant;
+	float	t1;
+	float	t2;
 }	t_sp_body;
-
 
 typedef struct s_sp
 {
-	int		id;//get_sphere
-	t_vec	center;//get_sphere
-	float	radius;//get_sphere
-	t_color	col;//get_sphere
+	int		id;
+	t_vec	center;
+	float	radius;
+	t_color	col;
 }	t_sp;
 
 typedef struct s_pl
@@ -185,10 +183,10 @@ typedef struct s_pl
 
 typedef struct s_count
 {
-	int i;
-	int sp;
-	int pl;
-	int cy;
+	int	i;
+	int	sp;
+	int	pl;
+	int	cy;
 }	t_count;
 
 typedef struct s_cyl_body
@@ -222,45 +220,45 @@ typedef struct s_cy
 
 typedef struct s_arg
 {
-	int 		 A; 
-	float 		 l_rat;
-	t_color 	 color;
-	int 		 C;
-	t_vec		 coor;
-	t_vec		 coor3d;
-	int			 FOV;
-	int 		 L;
-	float 		 bright;
-	int 		 sp;
-	float		 diameter;
-	int 		 pl;
-	int 		 cy;
-	float 		 height;
-	struct s_arg *next;
-} t_arg;
+	int				a;
+	float			l_rat;
+	t_color			color;
+	int				c;
+	t_vec			coor;
+	t_vec			coor3d;
+	int				fov;
+	int				l;
+	float			bright;
+	int				sp;
+	float			diameter;
+	int				pl;
+	int				cy;
+	float			height;
+	struct s_arg	*next;
+}	t_arg;
 
 typedef struct s_minirt
 {
-	mlx_t	*mlx;
-	mlx_image_t *img;
-	t_arg	*l_list;
-	t_amb	amb;
-	t_cam	cam;
-	t_lit	l;
-	t_count	ct;
-	t_sp	sp[MAX_SP];
-	int		sp_count;
-	t_pl	pl[MAX_PL];
-	int		pl_count;
-	t_cy	cy[MAX_CY];
-	int		cy_count;
-	char	*line;
-	float	aspect_ratio;
-	int		width;
-	int		height;
-	int		resizing;
-	int		fd;
-} t_minirt;
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	t_arg		*l_list;
+	t_amb		amb;
+	t_cam		cam;
+	t_lit		l;
+	t_count		ct;
+	t_sp		sp[MAX_SP];
+	int			sp_count;
+	t_pl		pl[MAX_PL];
+	int			pl_count;
+	t_cy		cy[MAX_CY];
+	int			cy_count;
+	char		*line;
+	float		aspect_ratio;
+	int			width;
+	int			height;
+	int			resizing;
+	int			fd;
+}	t_minirt;
 
 void	check_content(char *file, t_minirt *rt);
 void	check_valid(char *file);
@@ -277,8 +275,8 @@ void	get_cylinder(t_minirt *rt, t_arg *temp, int i, int j);
 void	get_plane(t_minirt *rt, t_arg *temp, int i, int j);
 void	get_sphere(t_minirt *rt, t_arg *temp, int i, int j);
 void	get_light(t_minirt *rt, t_arg *temp, int i);
-void	get_cam(t_minirt *rt,t_arg *temp, int i);
-void	get_amb(t_minirt *rt,t_arg *temp, int i);
+void	get_cam(t_minirt *rt, t_arg *temp, int i);
+void	get_amb(t_minirt *rt, t_arg *temp, int i);
 
 /*		PARSING FUNCTIONS		*/
 int		argument_count(char **values, int amount);
@@ -295,7 +293,7 @@ int		val_num(char **val);
 int		add_height(char *str, t_arg *new);
 int		validate_commas(char *str);
 
-void    execution(t_minirt *rt);
+void	execution(t_minirt *rt);
 
 /*		MAKING LINKED lIST		*/
 
@@ -305,7 +303,7 @@ void	ft_lstadd_back_rt(t_arg **lst, t_arg *new);
 void	free_minirt(t_minirt *freeable, char *error);
 void	free_split(char **str);
 
-void 	init_mlx(t_minirt *rt);
+void	init_mlx(t_minirt *rt);
 
 /*		VECTOOORS				*/
 float	vec_len(t_vec a);
@@ -322,8 +320,9 @@ t_vec	norm_vec(t_vec v);
 t_ray	init_ray(t_vec s, t_vec d);
 t_vec	ray_point(t_ray r, float t);
 t_color	ray_color(t_ray ray, t_minirt rt);
-t_vec 	calculate_ray_direction(t_vec pixel_center, t_vec camera_point, t_vec camera_orient);
-t_vec 	calculate_pixel_center(t_cam *cam, int x, int y);
+t_vec	calculate_ray_direction(t_vec pixel_center,
+			t_vec camera_point, t_vec camera_orient);
+t_vec	calculate_pixel_center(t_cam *cam, int x, int y);
 
 /*		UTILS					*/
 int		get_rgba(int r, int g, int b, int a);
@@ -336,11 +335,11 @@ void	check_cylinders(t_ray ray, t_minirt rt, t_hit_info *ray_info);
 void	check_shadow(t_minirt rt, int *in_shadow, t_hit_info ray_info);
 
 /*		lens					*/
-void 	calculate_viewport(t_minirt *rt, t_init_cam *i);
-void 	calculate_camera_axes(t_minirt *rt, t_init_cam *i);
-void 	calculate_scaled_viewport(t_minirt *rt, t_init_cam *i);
-void 	calculate_viewport_position(t_minirt *rt, t_init_cam *i);
-void 	calculate_pixel_origin(t_minirt *rt, t_init_cam *i);
+void	calculate_viewport(t_minirt *rt, t_init_cam *i);
+void	calculate_camera_axes(t_minirt *rt, t_init_cam *i);
+void	calculate_scaled_viewport(t_minirt *rt, t_init_cam *i);
+void	calculate_viewport_position(t_minirt *rt, t_init_cam *i);
+void	calculate_pixel_origin(t_minirt *rt, t_init_cam *i);
 
 float	hit_cylinder(t_cy c, t_ray ray);
 float	hit_sphere(t_vec center, float radius, t_ray ray);
@@ -354,7 +353,8 @@ float	hit_top_cap(t_vec axis_dir, t_vec top_cap_c, t_ray ray, float r);
 
 void	compute_lighting(t_color *color, t_minirt rt, t_hit_info ray_info);
 
-t_color color_mult(t_color col, float a);
-t_color color_sub(t_color col, float a);
-t_color shadow_mult(t_color col, float a);
+t_color	color_mult(t_color col, float a);
+t_color	color_sub(t_color col, float a);
+t_color	shadow_mult(t_color col, float a);
+
 #endif

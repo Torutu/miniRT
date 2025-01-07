@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:48:39 by walnaimi          #+#    #+#             */
-/*   Updated: 2025/01/07 12:30:59 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:21:20 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ t_color	color_mult(t_color col, float a)
 {
 	t_color	new_col;
 
-	new_col.R = col.R * a;
-	new_col.G = col.G * a;
-	new_col.B = col.B * a;
+	new_col.red = col.red * a;
+	new_col.green = col.green * a;
+	new_col.blue = col.blue * a;
 	return (new_col);
 }
 
@@ -43,9 +43,9 @@ t_color	shadow_mult(t_color col, float a)
 {
 	t_color	new_col;
 
-	new_col.R = col.R * a;
-	new_col.G = col.G * a;
-	new_col.B = col.B * a;
+	new_col.red = col.red * a;
+	new_col.green = col.green * a;
+	new_col.blue = col.blue * a;
 	return (new_col);
 }
 
@@ -53,9 +53,9 @@ t_color	color_sub(t_color col, float a)
 {
 	t_color	new_col;
 
-	new_col.R = col.R - a;
-	new_col.G = col.G - a;
-	new_col.B = col.B - a;
+	new_col.red = col.red - a;
+	new_col.green = col.green - a;
+	new_col.blue = col.blue - a;
 	return (new_col);
 }
 

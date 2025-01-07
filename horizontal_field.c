@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_field.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:37:02 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/27 11:47:59 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:23:09 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	add_horizontal(char *values, t_arg *new)
 	}
 	if (ft_strlen(values) > 3)
 		return (1);
-	new->FOV = ft_atoi(values);
-	if (new->FOV > 180 || new->FOV < 0)
+	new->fov = ft_atoi(values);
+	if (new->fov > 180 || new->fov < 0)
 		return (1);
 	return (0);
 }

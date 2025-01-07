@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_functions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:04:56 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 12:33:40 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:32:26 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	check_nodes(t_arg *nodes, char i)
 {
-	t_arg *temp;
+	t_arg	*temp;
 
 	temp = nodes;
 	while (temp)
 	{
-		if (temp->A == 1 && i == 'A')
+		if (temp->a == 1 && i == 'A')
 			return (1);
-		if (temp->C == 1 && i == 'C')
+		if (temp->c == 1 && i == 'C')
 			return (1);
-		if (temp->L == 1 && i == 'L')
+		if (temp->l == 1 && i == 'L')
 			return (1);
 		temp = temp->next;
 	}
@@ -65,11 +65,11 @@ int	count_commas(char *line)
 	return (count);
 }
 
-int no_extras(char **array)
+int	no_extras(char **array)
 {
 	int	i;
-	int no;
-	
+	int	no;
+
 	no = 1;
 	while (array && array[no])
 	{
@@ -91,7 +91,7 @@ int no_extras(char **array)
 int	validate_commas(char *str)
 {
 	int	i;
-	
+
 	i = 0;
 	while (str[i] != '\0')
 	{

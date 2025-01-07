@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 10:53:45 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 13:05:49 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:12:29 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	add_colors(char *values, t_arg *new)
 		return (1);
 	if (val_num(colors) == 1)
 		return (free_minirt_c(colors));
-	new->color.R = ft_atoi(colors[0]);
-	if (new->color.R > 255 || new->color.R < 0)
+	new->color.red = ft_atoi(colors[0]);
+	if (new->color.red > 255 || new->color.red < 0)
 		return (free_minirt_c(colors));
-	new->color.B = ft_atoi(colors[1]);
-	if (new->color.B > 255 || new->color.B < 0)
+	new->color.blue = ft_atoi(colors[1]);
+	if (new->color.blue > 255 || new->color.blue < 0)
 		return (free_minirt_c(colors));
-	new->color.G = ft_atoi(colors[2]);
-	if (new->color.G > 255 || new->color.G < 0)
+	new->color.green = ft_atoi(colors[2]);
+	if (new->color.green > 255 || new->color.green < 0)
 		return (free_minirt_c(colors));
 	free_split(colors);
 	return (0);

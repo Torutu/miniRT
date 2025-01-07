@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:53:55 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/27 11:24:08 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:57:00 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ void	free_minirt(t_minirt *freeable, char *error)
 	}
 }
 
-void free_split(char **str)
+void	free_split(char **str)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (str[i] != NULL)
 	{

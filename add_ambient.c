@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:07:54 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 12:40:19 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:22:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	check_nodes_a(t_arg *list, t_minirt *rt, char **values)
 		return ;
 	while (temp != NULL)
 	{
-		if (temp->A == 1)
+		if (temp->a == 1)
 		{
 			free_split(values);
 			free_minirt(rt, "ERROR: MULTIPLE AMBIENT LIGHT\n");
@@ -56,7 +56,7 @@ void	add_ambient(char **values, t_minirt *rt)
 		free_minirt(rt, "Error: MALLOC FAIL\n");
 	}
 	new->next = NULL;
-	new->A = 1;
+	new->a = 1;
 	if (add_lighting_ratio(values[1], new) == 1
 		|| add_colors(values[2], new) == 1)
 	{

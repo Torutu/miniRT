@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:13:40 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 12:44:03 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:22:39 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	check_nodes_c(t_arg *list, t_minirt *rt, char **values)
 		return ;
 	while (temp != NULL)
 	{
-		if (temp->C == 1)
+		if (temp->c == 1)
 		{
 			free_split(values);
 			free_minirt(rt, "ERROR: MULTIPLE CAMERA\n");
@@ -64,7 +64,7 @@ void	add_camera(char **values, t_minirt *rt)
 		free_minirt(rt, "Error: MALLOC FAIL\n");
 	}
 	new->next = NULL;
-	new->C = 1;
+	new->c = 1;
 	if (add_coor(values[1], new) == 1 || add_threed(values[2], new) == 1
 		|| add_horizontal(values[3], new) == 1)
 	{
