@@ -22,6 +22,7 @@ t_color	ray_color(t_ray ray, t_minirt rt)
 	int				in_shadow;
 	t_color			color;
 
+	in_shadow = 0;
 	check_spheres(ray, rt, &h_rec);
 	check_planes(ray, rt, &h_rec);
 	check_cylinders(ray, rt, &h_rec);
