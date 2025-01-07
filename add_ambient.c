@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_ambient.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toru <toru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:07:54 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/30 22:11:51 by toru             ###   ########.fr       */
+/*   Updated: 2025/01/07 12:40:19 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ WHAT DO I WANT FOR THIS TO DO?
 3. Check if the values are okay
 */
 
-static void	check_nodes_A(t_arg *list, t_minirt *rt, char **values)
+static void	check_nodes_a(t_arg *list, t_minirt *rt, char **values)
 {
-	t_arg *temp;
+	t_arg	*temp;
 
 	temp = list;
 	if (temp == NULL)
-		return;
+		return ;
 	while (temp != NULL)
 	{
 		if (temp->A == 1)
@@ -42,13 +42,13 @@ static void	check_nodes_A(t_arg *list, t_minirt *rt, char **values)
 void	add_ambient(char **values, t_minirt *rt)
 {
 	t_arg	*new;
-	
+
 	if (argument_count(values, 3) > 0)
 	{
 		free_split(values);
 		free_minirt(rt, "ERROR: Invalid Ambient Lighting\n");
 	}
-	check_nodes_A(rt->l_list, rt, values);
+	check_nodes_a(rt->l_list, rt, values);
 	new = ft_calloc(1, sizeof(t_arg));
 	if (!new)
 	{
@@ -57,7 +57,8 @@ void	add_ambient(char **values, t_minirt *rt)
 	}
 	new->next = NULL;
 	new->A = 1;
-	if (add_lighting_ratio(values[1], new) == 1 || add_colors(values[2], new) == 1)
+	if (add_lighting_ratio(values[1], new) == 1
+		|| add_colors(values[2], new) == 1)
 	{
 		free_split(values);
 		free(new);
@@ -65,7 +66,3 @@ void	add_ambient(char **values, t_minirt *rt)
 	}
 	ft_lstadd_back_rt(&rt->l_list, new);
 }
-/*
-∗ identifier: A
-∗ ambient lighting ratio in range [0.0,1.0]: 0.2
-∗ R,G,B colors in range [0-255]: 255, 255, 255 */

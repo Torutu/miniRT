@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   add_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:19:43 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/27 12:32:47 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:59:51 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-/*
-	int L = Light (need xyz and below);
-	int bright = light brightness ratio [0.0,1.0];
-*/
 
 static int	arguments(char **values, int amount)
 {
@@ -44,13 +39,13 @@ static int	add_brightness(char *str, t_arg *new)
 	return (0);
 }
 
-static void	check_nodes_L(t_arg *list, t_minirt *rt, char **values)
+static void	check_nodes_l(t_arg *list, t_minirt *rt, char **values)
 {
-	t_arg *temp;
+	t_arg	*temp;
 
 	temp = list;
 	if (temp == NULL)
-		return;
+		return ;
 	while (temp != NULL)
 	{
 		if (temp->L == 1)
@@ -62,7 +57,7 @@ static void	check_nodes_L(t_arg *list, t_minirt *rt, char **values)
 	}
 }
 
-void add_light(char **values, t_minirt *rt)
+void	add_light(char **values, t_minirt *rt)
 {
 	t_arg	*new;
 
@@ -71,7 +66,7 @@ void add_light(char **values, t_minirt *rt)
 		free_split(values);
 		free_minirt(rt, "Error: Invalid Light");
 	}
-	check_nodes_L(rt->l_list, rt, values);
+	check_nodes_l(rt->l_list, rt, values);
 	new = ft_calloc(1, sizeof(t_arg));
 	if (!new)
 	{

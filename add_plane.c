@@ -6,13 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:27:12 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/01 20:36:06 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:00:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-/*int pl = Plane (need xyz, XYZnv and RGB);*/
 
 static int	arguments(char **values, int amount)
 {
@@ -34,6 +32,7 @@ static int	arguments(char **values, int amount)
 void	add_plane(char **values, t_minirt *rt)
 {
 	t_arg	*new;
+
 	rt->pl_count++;
 	if (arguments(values, 4) > 0)
 	{
