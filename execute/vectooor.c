@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vectooor.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/07 11:48:41 by walnaimi          #+#    #+#             */
+/*   Updated: 2025/01/07 12:32:21 by walnaimi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../miniRT.h"
 
 // Calculates the length (magnitude) of a 3D vector.
@@ -12,7 +24,6 @@ float	vec_len(t_vec a)
 	float	len;
 
 	len = sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
-
 	return (len);
 }
 
@@ -31,9 +42,9 @@ t_vec	vec_add(t_vec a, t_vec b)
 	c.x = b.x + a.x;
 	c.y = b.y + a.y;
 	c.z = b.z + a.z;
-
 	return (c);
 }
+
 /**
  * Returns the negation of a given 3D vector.
  *
@@ -49,7 +60,6 @@ t_vec	vec_neg(t_vec a)
 	c.x = -a.x;
 	c.y = -a.y;
 	c.z = -a.z;
-
 	return (c);
 }
 
@@ -68,7 +78,6 @@ t_vec	vec_sub(t_vec a, t_vec b)
 	c.x = a.x - b.x;
 	c.y = a.y - b.y;
 	c.z = a.z - b.z;
-
 	return (c);
 }
 
@@ -87,6 +96,5 @@ t_vec	vec_mult(t_vec a, float b)
 	c.x = b * a.x;
 	c.y = b * a.y;
 	c.z = b * a.z;
-    
 	return (c);
 }

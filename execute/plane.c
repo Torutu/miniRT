@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   plane.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/07 11:47:08 by walnaimi          #+#    #+#             */
+/*   Updated: 2025/01/07 12:09:09 by walnaimi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../miniRT.h"
 
 float	hit_plane(t_vec norm, t_vec point, t_ray ray)
@@ -6,7 +18,7 @@ float	hit_plane(t_vec norm, t_vec point, t_ray ray)
 	float	p;
 
 	denom = dot_vec(norm, ray.direction);
-	if(fabs(denom) > 0.00001f)
+	if (fabs(denom) > 0.00001f)
 	{
 		p = dot_vec(vec_sub(point, ray.start), norm) / denom;
 		return (p);

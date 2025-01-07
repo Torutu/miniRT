@@ -1,26 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/07 11:47:13 by walnaimi          #+#    #+#             */
+/*   Updated: 2025/01/07 12:12:08 by walnaimi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../miniRT.h"
 
-t_vec calculate_pixel_center(t_cam *cam, int x, int y)
+t_vec	calculate_pixel_center(t_cam *cam, int x, int y)
 {
-    t_vec px_center;
-    px_center = vec_add(cam->fstpx, vec_mult(cam->px_size_x, x));
-    px_center = vec_add(px_center, vec_mult(cam->px_size_y, y));
-    return (px_center);
+	t_vec	px_center;
+
+	px_center = vec_add(cam->fstpx, vec_mult(cam->px_size_x, x));
+	px_center = vec_add(px_center, vec_mult(cam->px_size_y, y));
+	return (px_center);
 }
 
-t_vec calculate_ray_direction(t_vec pixel_center, t_vec camera_point, t_vec camera_orient)
+t_vec	calculate_ray_direction(t_vec pixel_center,
+		t_vec camera_point, t_vec camera_orient)
 {
-    t_vec ray_direction = norm_vec(vec_sub(pixel_center, camera_point));
-    if (dot_vec(ray_direction, camera_orient) < 0)
-        ray_direction = vec_mult(ray_direction, -1.0);
-    return (ray_direction);
+	t_vec	ray_direction;
+
+	ray_direction = norm_vec(vec_sub(pixel_center, camera_point));
+	if (dot_vec(ray_direction, camera_orient) < 0)
+		ray_direction = vec_mult(ray_direction, -1.0);
+	return (ray_direction);
 }
 
 t_color	ray_color(t_ray ray, t_minirt rt)
 {
 	t_hit_info	h_rec;
-	int				in_shadow;
-	t_color			color;
+	int			in_shadow;
+	t_color		color;
 
 	in_shadow = 0;
 	check_spheres(ray, rt, &h_rec);

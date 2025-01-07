@@ -1,41 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/07 11:46:50 by walnaimi          #+#    #+#             */
+/*   Updated: 2025/01/07 12:06:52 by walnaimi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../miniRT.h"
 
-
-static void resize_done(void *param)
+static	void	resize_done(void *param)
 {
-    t_minirt *rt = param;
+	t_minirt	*rt;
 
-    if (rt->resizing) {
-        rt->resizing = 0;
-        execution(rt);
-    }
+	rt = param;
+	if (rt->resizing)
+	{
+		rt->resizing = 0;
+		execution(rt);
+	}
 }
 
-static void resize_hook(int32_t width, int32_t height, void *param)
+static	void	resize_hook(int32_t width, int32_t height, void *param)
 {
-    t_minirt *rt = param;
+	t_minirt	*rt;
 
-    rt->resizing = 1; // Set the flag to indicate resizing is in progress
-    // Update the width and height
-    rt->width = width;
-    rt->height = height;
-    // Resize the image buffer
-    if (rt->img) {
-        mlx_delete_image(rt->mlx, rt->img);
-    }
-    rt->img = mlx_new_image(rt->mlx, width, height);
-    if (!rt->img) {
-        printf("Failed to resize the image buffer\n");
-        exit(1); // Handle this more gracefully if needed
-    }
-    // Attach the new image to the window
-    if (mlx_image_to_window(rt->mlx, rt->img, 0, 0) == -1) {
-        printf("Failed to attach resized image to window\n");
-        exit(1); // Handle this more gracefully if needed
-    }
+	rt = param;
+	rt->resizing = 1;
+	rt->width = width;
+	rt->height = height;
+	if (rt->img)
+		mlx_delete_image(rt->mlx, rt->img);
+	rt->img = mlx_new_image(rt->mlx, width, height);
+	if (!rt->img)
+	{
+		printf("Failed to resize the image buffer\n");
+		exit(1);
+	}
+	if (mlx_image_to_window(rt->mlx, rt->img, 0, 0) == -1)
+	{
+		printf("Failed to attach resized image to window\n");
+		exit(1);
+	}
 }
 
-static void	close_hook(void *param)
+static	void	close_hook(void *param)
 {
 	mlx_t	*mlx;
 
@@ -44,27 +56,23 @@ static void	close_hook(void *param)
 		mlx_close_window(mlx);
 }
 
-void init_mlx(t_minirt *rt)
+void	init_mlx(t_minirt *rt)
 {
 	rt->mlx = mlx_init(rt->width, rt->height, "mmm yes minirt", true);
 	if (!rt->mlx)
 	{
 		printf("mlx_init failed\n");
-        //free shit
 		exit(1);
 	}
 	rt->img = mlx_new_image(rt->mlx, rt->width, rt->height);
 	if (!rt->img)
 	{
 		printf("mlx_new_image failed\n");
-        //free shit
 		exit(1);
 	}
-	//mlx_set_setting(MLX_STRETCH_IMAGE, false);
 	if (mlx_image_to_window(rt->mlx, rt->img, 0, 0) == -1)
 	{
 		printf("mlx_image_to_window failed\n");
-        //free shit
 		exit(1);
 	}
 	mlx_resize_hook(rt->mlx, &resize_hook, rt);

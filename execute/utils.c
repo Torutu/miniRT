@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/07 11:48:39 by walnaimi          #+#    #+#             */
+/*   Updated: 2025/01/07 12:30:59 by walnaimi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../miniRT.h"
 
 /*
@@ -17,33 +29,34 @@ void	set_px_col(mlx_image_t *img, int x, int y, unsigned int color)
 	}
 }
 
-t_color color_mult(t_color col, float a) 
+t_color	color_mult(t_color col, float a)
 {
-    t_color new_col;
+	t_color	new_col;
 
-    new_col.R = col.R * a;
-    new_col.G = col.G * a;
-    new_col.B = col.B * a;
-    return new_col;
+	new_col.R = col.R * a;
+	new_col.G = col.G * a;
+	new_col.B = col.B * a;
+	return (new_col);
 }
 
-t_color shadow_mult(t_color col, float a) 
+t_color	shadow_mult(t_color col, float a)
 {
-    t_color new_col;
-    new_col.R = col.R * a;
-    new_col.G = col.G * a;
-    new_col.B = col.B * a;
-    return new_col;
+	t_color	new_col;
+
+	new_col.R = col.R * a;
+	new_col.G = col.G * a;
+	new_col.B = col.B * a;
+	return (new_col);
 }
 
-t_color color_sub(t_color col, float a) 
+t_color	color_sub(t_color col, float a)
 {
-    t_color new_col;
+	t_color	new_col;
 
-    new_col.R = col.R - a;
-    new_col.G = col.G - a;
-    new_col.B = col.B - a;
-    return new_col;
+	new_col.R = col.R - a;
+	new_col.G = col.G - a;
+	new_col.B = col.B - a;
+	return (new_col);
 }
 
 int	get_rgba(int r, int g, int b, int a)

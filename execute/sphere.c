@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sphere.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/07 11:48:35 by walnaimi          #+#    #+#             */
+/*   Updated: 2025/01/07 12:14:07 by walnaimi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../miniRT.h"
 
 float	hit_sphere(t_vec center, float radius, t_ray ray)
 {
 	t_sp_body	sp;
+
 	sp.og_to_cent = vec_sub(center, ray.start);
 	sp.a = dot_vec(ray.direction, ray.direction);
 	sp.b = -2.0 * dot_vec(ray.direction, sp.og_to_cent);
@@ -19,7 +32,6 @@ float	hit_sphere(t_vec center, float radius, t_ray ray)
 	return (-1.0);
 }
 
-
 void	check_spheres(t_ray ray, t_minirt rt, t_hit_info *ray_info)
 {
 	int		i;
@@ -34,7 +46,8 @@ void	check_spheres(t_ray ray, t_minirt rt, t_hit_info *ray_info)
 		{
 			ray_info->t = t;
 			ray_info->point = ray_point(ray, t);
-			ray_info->normal = norm_vec(vec_sub(ray_info->point, rt.sp[i].center));
+			ray_info->normal = norm_vec(vec_sub(ray_info->point,
+						rt.sp[i].center));
 			ray_info->color = color_mult(rt.sp[i].col, 255);
 			ray_info->center = rt.sp[i].center;
 			ray_info->id = i;
@@ -42,4 +55,3 @@ void	check_spheres(t_ray ray, t_minirt rt, t_hit_info *ray_info)
 		}
 	}
 }
-
