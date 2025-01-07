@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:48:32 by walnaimi          #+#    #+#             */
-/*   Updated: 2025/01/07 14:21:20 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:43:50 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	compute_lighting(t_color *color, t_minirt rt, t_hit_info ray_info)
 			{rt.amb.ratio, rt.amb.ratio, rt.amb.ratio}, 0.3),
 			vec_mult(diffuse, rt.l.bright));
 	*color = (t_color){ray_info.color.red * rt.l.lighting.x,
-		ray_info.color.green * rt.l.lighting.y, ray_info.color.blue * rt.l.lighting.z};
+		ray_info.color.green * rt.l.lighting.y,
+		ray_info.color.blue * rt.l.lighting.z};
 	color->red = fminf(fmaxf(color->red, 0.0), 255.0);
 	color->green = fminf(fmaxf(color->green, 0.0), 255.0);
 	color->blue = fminf(fmaxf(color->blue, 0.0), 255.0);
