@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   content_val.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:42:29 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/05 12:45:32 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:32:39 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,8 @@ static void	add_values(char *line, t_minirt *rt)
 {
 	char	**values;
 	rm_whitespace(line);
+	if (validate_commas(rt->line) == 1)
+		free_minirt(rt, "ERROR: Invalid Input in file\n");
 	values = ft_split(line, ' ');
 	if (!values)
 		free_minirt(rt, "Error: MALLOC FAIL\n");
@@ -190,9 +192,8 @@ static void	add_values(char *line, t_minirt *rt)
 	free_split(values);
 }
 
-void check_content(char *file, t_minirt *rt)
+static	void init_struct(t_minirt *rt)
 {
-	rt->fd = open(file, O_RDONLY);
 	rt->l_list = NULL;
 	rt->line = NULL;
 	rt->sp_count = 0;
@@ -202,6 +203,13 @@ void check_content(char *file, t_minirt *rt)
 	rt->ct.pl = 0;
 	rt->ct.cy = 0;
 	rt->ct.i = 0;
+}
+
+void check_content(char *file, t_minirt *rt)
+{
+	rt->fd = open(file, O_RDONLY);
+
+	init_struct(rt);
 	while (1)
 	{
 		rt->line = get_next_line(rt->fd);
@@ -212,9 +220,12 @@ void check_content(char *file, t_minirt *rt)
 			free(rt->line);
 			continue ;
 		}
+
 		add_values(rt->line, rt);
 		free(rt->line);
 	}
+	if (rt->l_list == NULL)
+		free_minirt(rt, "ERROR: Empty File\n");
 	get_values(rt ,rt->l_list);
 	close(rt->fd);
 	rt->fd = -1;

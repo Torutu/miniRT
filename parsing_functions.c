@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:04:56 by sataskin          #+#    #+#             */
-/*   Updated: 2024/11/21 13:19:15 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:33:40 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,3 +88,19 @@ int no_extras(char **array)
 	return (0);
 }
 
+int	validate_commas(char *str)
+{
+	int	i;
+	
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == ',')
+		{
+			if (str[i + 1] == '\0' || str[i + 1] == ' ')
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}

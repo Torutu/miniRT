@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:40:12 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/06 16:42:11 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:33:12 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,6 +286,7 @@ int		add_horizontal(char *values, t_arg *new);
 int		add_diameter(char *str, t_arg *new);
 int		val_num(char **val);
 int		add_height(char *str, t_arg *new);
+int		validate_commas(char *str);
 
 void    execution(t_minirt *rt);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 10:53:45 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/03 18:41:09 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:31:20 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static int	check_colors(char *values)
 	{
 		if (ft_isdigit(values[i]))
 			i++;
-		else if (values[i] == ','  && values[i + 1] != ',')
+		else if (values[i] == ','  && values[i + 1] != ','
+			&& values[i + 1] != '\0')
 		{
 			comma++;
 			i++;
@@ -47,9 +48,7 @@ static int	check_colors(char *values)
 int	add_colors(char *values, t_arg *new)
 {
 	char	**colors;
-	// int		i;
-	
-	// i = 0;
+
 	if (check_colors(values) == 1)
 		return (1);
 	colors = ft_split(values, ',');
