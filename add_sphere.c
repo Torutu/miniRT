@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:15:02 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/01 20:36:08 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:04:03 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ static int	arguments(char **values, int amount)
 void	add_sphere(char **values, t_minirt *rt)
 {
 	t_arg	*new;
+
 	rt->sp_count++;
 	if (arguments(values, 4) > 0)
 	{
 		free_split(values);
-		free_minirt(rt, "ERROR: Invalid Sphere\n");		
+		free_minirt(rt, "ERROR: Invalid Sphere\n");
 	}
 	new = ft_calloc(1, sizeof(t_arg));
 	if (!new)
@@ -54,7 +55,7 @@ void	add_sphere(char **values, t_minirt *rt)
 	{
 		free_split(values);
 		free(new);
-		free_minirt(rt, "Error: Invalid Input\n");		
+		free_minirt(rt, "Error: Invalid Input\n");
 	}
 	ft_lstadd_back_rt(&rt->l_list, new);
 }

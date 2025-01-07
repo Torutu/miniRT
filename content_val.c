@@ -6,122 +6,16 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:42:29 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 12:41:13 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:20:12 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-
-static t_color apply_ambient(t_color obj_color, t_color amb_color, float ratio)
-{
-    t_color result;
-
-    if (amb_color.R == 255 && amb_color.G == 255 && amb_color.B == 255)
-        return (obj_color);
-
-    ratio *= 85;
-    result.R = (1 - ratio) * obj_color.R + ratio * amb_color.R;
-    result.G = (1 - ratio) * obj_color.G + ratio * amb_color.G;
-    result.B = (1 - ratio) * obj_color.B + ratio * amb_color.B;
-
-    // Clamp values to [0, 255] using simple if statements
-    if (result.R > 255)
-        result.R = 255;
-    if (result.G > 255)
-        result.G = 255;
-    if (result.B > 255)
-        result.B = 255;
-
-    return (result);
-}
-
-static void get_cylinder(t_minirt *rt, t_arg *temp, int i, int j)
-{
-    rt->cy[j].id = i;
-    rt->cy[j].center.x = temp->coor.x;
-    rt->cy[j].center.y = temp->coor.y;
-    rt->cy[j].center.z = temp->coor.z;
-    rt->cy[j].axis.x = temp->coor3d.x;
-    rt->cy[j].axis.y = temp->coor3d.y;
-    rt->cy[j].axis.z = temp->coor3d.z;
-    rt->cy[j].radius = temp->diameter;
-    rt->cy[j].height = temp->height;
-    rt->cy[j].col.R = temp->color.R;
-    rt->cy[j].col.G = temp->color.G;
-    rt->cy[j].col.B = temp->color.B;
-
-	rt->cy[j].col = apply_ambient(rt->cy[j].col, rt->amb.color, rt->amb.ratio);
-}
-
-static void get_plane(t_minirt *rt, t_arg *temp, int i, int j)
-{
-	rt->pl[j].id = i;
-	rt->pl[j].point.x = temp->coor.x;
-	rt->pl[j].point.y = temp->coor.y;
-	rt->pl[j].point.z = temp->coor.z;
-	rt->pl[j].normal.x = temp->coor3d.x;
-	rt->pl[j].normal.y = temp->coor3d.y;
-	rt->pl[j].normal.z = temp->coor3d.z;
-	rt->pl[j].col.R = temp->color.R;
-	rt->pl[j].col.G = temp->color.G;
-	rt->pl[j].col.B = temp->color.B;
-
-	rt->pl[j].col = apply_ambient(rt->pl[j].col, rt->amb.color, rt->amb.ratio);
-}
-
-static void get_sphere(t_minirt *rt, t_arg *temp, int i, int j)
-{
-	rt->sp[j].id = i;
-	rt->sp[j].center.x = temp->coor.x;
-	rt->sp[j].center.y = temp->coor.y;
-	rt->sp[j].center.z = temp->coor.z;
-	rt->sp[j].col.R = temp->color.R;
-	rt->sp[j].col.G = temp->color.G;
-	rt->sp[j].col.B = temp->color.B;
-	rt->sp[j].radius = temp->diameter;
-
-	rt->sp[j].col = apply_ambient(rt->sp[j].col, rt->amb.color, rt->amb.ratio);
-
-}
-
-static void get_light(t_minirt *rt,t_arg *temp, int i)
-{
-	rt->l.id = i;
-	rt->l.point.x = temp->coor.x;
-	rt->l.point.y = temp->coor.y;
-	rt->l.point.z = temp->coor.z;
-	rt->l.bright = temp->bright/100;
-}
-
-static void get_cam(t_minirt *rt,t_arg *temp, int i)
-{
-	rt->cam.id = i;
-	rt->cam.point.x = temp->coor.x;
-	rt->cam.point.y = temp->coor.y;
-	rt->cam.point.z = temp->coor.z;
-	rt->cam.or_vec.x = temp->coor3d.x;
-	rt->cam.or_vec.y = temp->coor3d.y;
-	rt->cam.or_vec.z = temp->coor3d.z;
-	rt->cam.fov = temp->FOV;
-}
-
-static void	get_amb(t_minirt *rt,t_arg *temp, int i)
-{
-	rt->amb.id = i;
-	rt->amb.color.R = temp->color.R;
-	rt->amb.color.G = temp->color.G;
-	rt->amb.color.B = temp->color.B;
-	rt->amb.ratio = temp->l_rat/100;
-}
-
-static void get_values(t_minirt *rt, t_arg *ll)
+static void	get_values(t_minirt *rt, t_arg *ll)
 {
 	t_arg *temp;
-	// int		i = 0;
-	// int		sp = 0;
-	// int		pl = 0;
-	// int		cy = 0;
+
 	temp = ll;
 	while (temp != NULL)
 	{
@@ -169,6 +63,7 @@ static void	rm_whitespace(char *line)
 static void	add_values(char *line, t_minirt *rt)
 {
 	char	**values;
+
 	rm_whitespace(line);
 	if (validate_commas(rt->line) == 1)
 		free_minirt(rt, "ERROR: Invalid Input in file\n");
@@ -192,7 +87,7 @@ static void	add_values(char *line, t_minirt *rt)
 	free_split(values);
 }
 
-static	void init_struct(t_minirt *rt)
+static void	init_struct(t_minirt *rt)
 {
 	rt->l_list = NULL;
 	rt->line = NULL;
@@ -205,28 +100,26 @@ static	void init_struct(t_minirt *rt)
 	rt->ct.i = 0;
 }
 
-void check_content(char *file, t_minirt *rt)
+void	check_content(char *file, t_minirt *rt)
 {
 	rt->fd = open(file, O_RDONLY);
-
 	init_struct(rt);
 	while (1)
 	{
 		rt->line = get_next_line(rt->fd);
 		if (!rt->line)
-			break;
+			break ;
 		if (!ft_strcmp(rt->line, "\n"))
 		{
 			free(rt->line);
 			continue ;
 		}
-
 		add_values(rt->line, rt);
 		free(rt->line);
 	}
 	if (rt->l_list == NULL)
 		free_minirt(rt, "ERROR: Empty File\n");
-	get_values(rt ,rt->l_list);
+	get_values(rt, rt->l_list);
 	close(rt->fd);
 	rt->fd = -1;
 }

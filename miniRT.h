@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:40:12 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 12:33:12 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:14:22 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,13 @@ void	add_light(char **values, t_minirt *rt);
 void	add_sphere(char **values, t_minirt *rt);
 void	add_plane(char **values, t_minirt *rt);
 void	add_cylinder(char **values, t_minirt *rt);
+t_color	apply_ambient(t_color obj_color, t_color amb_color, float ratio);
+void	get_cylinder(t_minirt *rt, t_arg *temp, int i, int j);
+void	get_plane(t_minirt *rt, t_arg *temp, int i, int j);
+void	get_sphere(t_minirt *rt, t_arg *temp, int i, int j);
+void	get_light(t_minirt *rt, t_arg *temp, int i);
+void	get_cam(t_minirt *rt,t_arg *temp, int i);
+void	get_amb(t_minirt *rt,t_arg *temp, int i);
 
 /*		PARSING FUNCTIONS		*/
 int		argument_count(char **values, int amount);

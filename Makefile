@@ -6,7 +6,7 @@
 #    By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 17:03:00 by sataskin          #+#    #+#              #
-#    Updated: 2025/01/06 16:08:54 by walnaimi         ###   ########.fr        #
+#    Updated: 2025/01/07 13:15:31 by walnaimi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRCS = add_ambient.c \
 		diameter.c \
 		file_val.c \
 		free_parser.c \
+		get_values_func.c \
+		get_values_func2.c \
 		horizontal_field.c \
 		lighting_ratio.c \
 		make_list.c \
