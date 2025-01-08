@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:45:53 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 14:06:50 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/08 07:25:45 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	init_mlx(&rt);
 	execution(&rt);
 	mlx_loop(rt.mlx);
-	free_minirt(&rt, NULL);
+	mlx_terminate(rt.mlx);
+	free_minirt(&rt, "main exit\n");
 	return (0);
 }
