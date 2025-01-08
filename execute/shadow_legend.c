@@ -6,7 +6,7 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:48:32 by walnaimi          #+#    #+#             */
-/*   Updated: 2025/01/07 14:43:50 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/08 23:15:04 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	compute_lighting(t_color *color, t_minirt rt, t_hit_info ray_info)
 	rt.l.lighting = vec_add(vec_mult((t_vec)
 			{rt.amb.ratio, rt.amb.ratio, rt.amb.ratio}, 0.3),
 			vec_mult(diffuse, rt.l.bright));
+	if (rt.amb.ratio >= rt.l.bright)
+		rt.l.lighting = (t_vec){rt.amb.ratio, rt.amb.ratio, rt.amb.ratio};
 	*color = (t_color){ray_info.color.red * rt.l.lighting.x,
 		ray_info.color.green * rt.l.lighting.y,
 		ray_info.color.blue * rt.l.lighting.z};
