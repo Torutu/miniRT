@@ -6,11 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:12:06 by walnaimi          #+#    #+#             */
-/*   Updated: 2025/01/07 14:15:56 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:49:57 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 t_color	apply_ambient(t_color obj_color, t_color amb_color, float ratio)
 {
@@ -18,7 +18,7 @@ t_color	apply_ambient(t_color obj_color, t_color amb_color, float ratio)
 
 	if (amb_color.red == 255 && amb_color.green == 255 && amb_color.blue == 255)
 		return (obj_color);
-	ratio *= 85;
+	ratio *= 100;
 	result.red = (1 - ratio) * obj_color.red + ratio * amb_color.red;
 	result.green = (1 - ratio) * obj_color.green + ratio * amb_color.green;
 	result.blue = (1 - ratio) * obj_color.blue + ratio * amb_color.blue;

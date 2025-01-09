@@ -6,11 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:48:41 by walnaimi          #+#    #+#             */
-/*   Updated: 2025/01/07 12:32:21 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../miniRT.h"
+#include "../minirt.h"
 
 // Calculates the length (magnitude) of a 3D vector.
 // 

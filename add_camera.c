@@ -6,11 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:13:40 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 14:22:39 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 static int	arguments(char **values, int amount)
 {

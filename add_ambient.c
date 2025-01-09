@@ -6,20 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:07:54 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 14:22:24 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
-
-/* Input form
-A 0.2 255,255,255 
-
-WHAT DO I WANT FOR THIS TO DO?
-1. Check if there already is an A
-2. split the arguments again for colors and for range
-3. Check if the values are okay
-*/
+#include "minirt.h"
 
 static void	check_nodes_a(t_arg *list, t_minirt *rt, char **values)
 {

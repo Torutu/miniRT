@@ -6,11 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:46:35 by walnaimi          #+#    #+#             */
-/*   Updated: 2025/01/07 11:46:42 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../miniRT.h"
+#include "../minirt.h"
 
 /**
  * Checks for intersections between a ray and a list of cylinders in the scene.

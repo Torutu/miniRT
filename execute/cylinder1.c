@@ -6,11 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:46:44 by walnaimi          #+#    #+#             */
-/*   Updated: 2025/01/07 11:46:45 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../miniRT.h"
+#include "../minirt.h"
 
 float	hit_top_cap(t_vec axis_dir, t_vec top_cap_c, t_ray ray, float r)
 {

@@ -6,13 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:37:02 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 14:23:09 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
-
-/* int FOV = 0 - 180 */
+#include "minirt.h"
 
 int	add_horizontal(char *values, t_arg *new)
 {

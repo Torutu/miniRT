@@ -6,17 +6,15 @@
 #    By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 17:03:00 by sataskin          #+#    #+#              #
-#    Updated: 2025/01/07 13:15:31 by walnaimi         ###   ########.fr        #
+#    Updated: 2025/01/09 14:14:49 by walnaimi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minirt
+NAME = miniRT
 LIBMLX := ./MLX42
 HEADERS := -I $(LIBMLX)/include
 
 LIBFT = ./libft/libft.a
-
-#HEADERS    := -I $(LIBMLX)/include
 
 SRCS = add_ambient.c \
 		add_camera.c \

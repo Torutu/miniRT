@@ -6,11 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 11:53:10 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 12:54:56 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:40:34 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 static int	val_post_dot(char *str)
 {
@@ -59,7 +59,7 @@ static int	val_pre_dot(char *str)
 	return (0);
 }
 
-static int	val_string(char *str)
+static int	validate_string(char *str)
 {
 	if (val_pre_dot(str) == 1)
 		return (1);
@@ -70,7 +70,7 @@ static int	val_string(char *str)
 
 int	add_height(char *str, t_arg *new)
 {
-	if (val_string(str) == 1)
+	if (validate_string(str) == 1)
 		return (1);
 	new->height = ft_atof(str);
 	return (0);

@@ -6,11 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:47:02 by walnaimi          #+#    #+#             */
-/*   Updated: 2025/01/07 12:08:26 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../miniRT.h"
+#include "../minirt.h"
 
 void	calculate_viewport(t_minirt *rt, t_init_cam *i)
 {
@@ -35,6 +35,11 @@ void	calculate_scaled_viewport(t_minirt *rt, t_init_cam *i)
 {
 	i->vport_x = vec_mult(i->cam_x_axis, i->vport_w);
 	i->vport_y = vec_mult(i->cam_y_axis, i->vport_h);
+	if (rt->width == 0 || rt->height == 0)
+	{
+		mlx_terminate(rt->mlx);
+		free_minirt(rt, "can't divide by zero! RAAAH!\n");
+	}
 	rt->cam.px_size_x = vec_div(i->vport_x, rt->width);
 	rt->cam.px_size_y = vec_div(i->vport_y, rt->height);
 }

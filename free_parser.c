@@ -6,11 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:53:55 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/08 07:39:38 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 void	free_minirt(t_minirt *freeable, char *error)
 {
@@ -35,6 +35,7 @@ void	free_minirt(t_minirt *freeable, char *error)
 			temp = temp->next;
 		}
 	}
+	exit(1);
 }
 
 void	free_split(char **str)

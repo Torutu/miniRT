@@ -6,11 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:19:43 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 14:23:26 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:58:59 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 static int	arguments(char **values, int amount)
 {
@@ -32,6 +32,8 @@ static int	arguments(char **values, int amount)
 static int	add_brightness(char *str, t_arg *new)
 {
 	if (ft_strlen(str) > 3)
+		return (1);
+	if (val_string(str) == 1)
 		return (1);
 	new->bright = ft_atof(str);
 	if (new->bright > 1.0 || new->bright < 0)
@@ -75,11 +77,12 @@ void	add_light(char **values, t_minirt *rt)
 	}
 	new->next = NULL;
 	new->l = 1;
-	if (add_coor(values[1], new) == 1 || add_brightness(values[2], new) == 1)
+	if (add_coor(values[1], new) == 1 || add_brightness(values[2], new) == 1
+		|| add_colors(values[3], new) == 1)
 	{
 		free_split(values);
 		free(new);
-		free_minirt(rt, "Error: Invalid Input\n");
+		free_minirt(rt, "Error: Invalid Input in Light\n");
 	}
 	ft_lstadd_back_rt(&rt->l_list, new);
 }

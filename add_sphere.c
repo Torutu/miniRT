@@ -6,14 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:15:02 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 13:04:03 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
-
-/*int sp = Sphere (need xyz, RGB and below);
-	int diameter = sphere diameter;*/
+#include "minirt.h"
 
 static int	arguments(char **values, int amount)
 {

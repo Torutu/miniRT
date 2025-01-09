@@ -6,11 +6,11 @@
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:46:50 by walnaimi          #+#    #+#             */
-/*   Updated: 2025/01/08 07:17:24 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:24 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../miniRT.h"
+#include "../minirt.h"
 
 static	void	resize_done(void *param)
 {
@@ -34,16 +34,16 @@ static	void	resize_hook(int32_t width, int32_t height, void *param)
 	rt->height = height;
 	if (rt->img)
 		mlx_delete_image(rt->mlx, rt->img);
-	rt->img = mlx_new_image(rt->mlx, width, height);
+	rt->img = mlx_new_image(rt->mlx, rt->width, rt->height);
 	if (!rt->img)
 	{
-		printf("Failed to resize the image buffer\n");
-		exit(1);
+		mlx_terminate(rt->mlx);
+		free_minirt(rt, "mlx new image failed\n");
 	}
 	if (mlx_image_to_window(rt->mlx, rt->img, 0, 0) == -1)
 	{
-		printf("Failed to attach resized image to window\n");
-		exit(1);
+		mlx_terminate(rt->mlx);
+		free_minirt(rt, "mlx image to window failed\n");
 	}
 }
 
@@ -61,19 +61,18 @@ void	init_mlx(t_minirt *rt)
 	rt->mlx = mlx_init(rt->width, rt->height, "mmm yes minirt", true);
 	if (!rt->mlx)
 	{
-		printf("mlx_init failed\n");
-		exit(1);
+		free_minirt(rt, "mlx init failed\n");
 	}
 	rt->img = mlx_new_image(rt->mlx, rt->width, rt->height);
 	if (!rt->img)
 	{
-		printf("mlx_new_image failed\n");
-		exit(1);
+		mlx_terminate(rt->mlx);
+		free_minirt(rt, "mlx new image failed\n");
 	}
 	if (mlx_image_to_window(rt->mlx, rt->img, 0, 0) == -1)
 	{
-		printf("mlx_image_to_window failed\n");
-		exit(1);
+		mlx_terminate(rt->mlx);
+		free_minirt(rt, "mlx image to window failed\n");
 	}
 	mlx_resize_hook(rt->mlx, &resize_hook, rt);
 	mlx_loop_hook(rt->mlx, &resize_done, rt);

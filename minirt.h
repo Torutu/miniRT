@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: walnaimi <walnaimi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:40:12 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/07 14:31:03 by walnaimi         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:38:57 by walnaimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 # include <stdlib.h>
 # include <math.h>
 # include "libft/libft.h"
-# include <stdio.h> // delete me please
+# include <stdio.h>
 
 # define MAX_PL 999
 # define MAX_SP 999
 # define MAX_CY 999
 
-# define WIDTH 120
-# define HEIGHT	90
+# define WIDTH 426
+# define HEIGHT	240
 # define PI 3.1415927f
 
 # define RAY_MIN 0.0001f
@@ -34,6 +34,8 @@
 
 /*
 Acceptable values = 000.000 and -000.000
+valgrind 120 by 90
+normal 426 by 240
 */
 /*
 	What each argument in the struct is:
@@ -292,6 +294,8 @@ int		add_diameter(char *str, t_arg *new);
 int		val_num(char **val);
 int		add_height(char *str, t_arg *new);
 int		validate_commas(char *str);
+void	check_input(t_minirt *rt);
+int		val_string(char *str);
 
 void	execution(t_minirt *rt);
 
